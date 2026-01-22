@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # OlympDev Web Development Project
 
 This project contains a set of static HTML/CSS templates designed for a web development olympiad. The templates are built using HTML5 and Tailwind CSS (via CDN). A basic Flask application is included to serve the pages.
@@ -49,3 +50,7 @@ Located in `index.html` within the `.carousel` class. Slides are simple `div` el
 
 ### Modals
 In `catalog.html`, modals function using CSS `:target` selectors. Each modal has an ID (e.g., `modal-1`), and clicking a card with `href="#modal-1"` activates it without JavaScript.
+=======
+# predprof-26
+Проект для тренировочного хакатона перед предпрофом 2025-26
+>>>>>>> 75df1d8305f67094a8094a31633a54bad33e6927
