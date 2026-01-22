@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympiad Project - Item Detail</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="static/style.css">
+    <script>
+        // Inline Theme Script - Default to LIGHT
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="flex flex-col min-h-screen bg-[var(--bg-secondary)] text-[var(--text-main)]">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 border-b transition-colors duration-300 bg-[var(--bg-primary)] border-[var(--border-color)]">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            
+            <!-- Left Side: Logo & Nav -->
+            <div class="flex items-center gap-8">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 font-bold text-2xl tracking-tighter hover:opacity-80 transition">
+                    <span class="bg-yellow-400 w-8 h-8 flex items-center justify-center rounded text-black text-lg font-bold">O</span>
+                    <span class="text-[var(--text-main)]">OLYMP<span class="text-yellow-500">DEV</span></span>
+                </a>
+
+                <!-- Nav -->
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition">Home</a>
+                    <a href="catalog.html" class="font-medium text-[var(--text-main)] border-b-2 border-yellow-400 transition">Catalog</a>
+                    <a href="profile.html" class="font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition">Your Account</a>
+                </nav>
+            </div>
+
+            <!-- Right Side: Actions -->
+            <div class="flex items-center gap-4">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-[var(--bg-secondary)] text-[var(--text-main)] transition" title="Toggle Theme">
+                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+
+                <!-- Profile Button -->
+                <a href="profile.html" class="p-2 rounded-full hover:bg-[var(--bg-secondary)] text-[var(--text-main)] transition" title="Go to Profile">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                </a>
+
+                <a href="login.html" class="hidden md:block text-sm font-semibold text-[var(--text-muted)] hover:text-[var(--text-main)]">Log In</a>
+                <a href="register.html" class="bg-[var(--text-main)] text-[var(--bg-primary)] px-4 py-2 rounded font-bold hover:bg-yellow-400 hover:text-black transition text-sm">Get Started</a>
+                <button class="md:hidden text-[var(--text-main)] text-2xl">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-28 pb-12 px-4">
+        <div class="container mx-auto max-w-6xl">
+            
+            <!-- Breadcrumbs -->
+            <div class="text-sm text-[var(--text-muted)] mb-6 flex items-center">
+                <a href="index.html" class="hover:text-yellow-600">Home</a> <span class="mx-2">/</span>
+                <a href="catalog.html" class="hover:text-yellow-600">Catalog</a> <span class="mx-2">/</span>
+                <span class="text-[var(--text-main)] font-medium">Neon Dashboard</span>
+            </div>
+
+            <!-- Product Top Section -->
+            <div class="flex flex-col lg:flex-row gap-12 mb-16">
+                
+                <!-- Gallery -->
+                <div class="w-full lg:w-1/2">
+                    <div class="aspect-video bg-[var(--bg-card)] rounded-2xl flex items-center justify-center mb-4 border border-[var(--border-color)] shadow-sm overflow-hidden relative group">
+                        <span class="text-8xl text-[var(--text-muted)] group-hover:scale-110 transition duration-500">🖥️</span>
+                        <div class="absolute inset-0 bg-black/0 hover:bg-black/5 transition cursor-zoom-in"></div>
+                    </div>
+                    <div class="grid grid-cols-4 gap-4">
+                        <div class="aspect-square bg-[var(--bg-card)] rounded-lg border border-[var(--border-color)] hover:border-yellow-400 gallery-thumb flex items-center justify-center text-2xl shadow-sm">📷</div>
+                        <div class="aspect-square bg-[var(--bg-card)] rounded-lg border border-[var(--border-color)] hover:border-yellow-400 gallery-thumb flex items-center justify-center text-2xl shadow-sm">📊</div>
+                        <div class="aspect-square bg-[var(--bg-card)] rounded-lg border border-[var(--border-color)] hover:border-yellow-400 gallery-thumb flex items-center justify-center text-2xl shadow-sm">⚙️</div>
+                        <div class="aspect-square bg-[var(--bg-card)] rounded-lg border border-[var(--border-color)] hover:border-yellow-400 gallery-thumb flex items-center justify-center text-2xl shadow-sm">📱</div>
+                    </div>
+                </div>
+
+                <!-- Info -->
+                <div class="w-full lg:w-1/2">
+                    <div class="flex justify-between items-start">
+                        <h1 class="text-4xl font-bold mb-2 text-[var(--text-main)]">Neon Dashboard</h1>
+                        <span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full uppercase">In Stock</span>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="text-yellow-500 flex text-lg">
+                            ★★★★☆
+                        </div>
+                        <span class="text-[var(--text-muted)] text-sm">4.2 (24 Reviews)</span>
+                        <span class="text-[var(--text-muted)]">|</span>
+                        <span class="text-[var(--text-muted)] text-sm">Version 2.4.0</span>
+                    </div>
+                    
+                    <div class="flex items-end gap-3 mb-6">
+                        <p class="text-4xl font-bold text-[var(--text-main)]">$49.00</p>
+                        <p class="text-lg text-[var(--text-muted)] line-through mb-1">$69.00</p>
+                    </div>
+                    
+                    <p class="text-[var(--text-muted)] mb-8 leading-relaxed text-lg">
+                        Neon Dashboard is the ultimate admin template for modern web applications. Built with the latest tech stack, it offers a clean interface that is easy on the eyes and highly customizable. Includes 50+ components, 5 chart libraries, and 3 distinct layouts.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8 bg-[var(--bg-secondary)] p-6 rounded-xl border border-[var(--border-color)]">
+                        <h4 class="font-bold text-[var(--text-main)] text-sm uppercase">Key Features</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                             <div class="flex items-center gap-3 text-sm text-[var(--text-muted)]">
+                                <span class="text-green-500 font-bold">✓</span> High Performance Code
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-[var(--text-muted)]">
+                                <span class="text-green-500 font-bold">✓</span> Fully Responsive Design
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-[var(--text-muted)]">
+                                <span class="text-green-500 font-bold">✓</span> Lifetime Updates
+                            </div>
+                             <div class="flex items-center gap-3 text-sm text-[var(--text-muted)]">
+                                <span class="text-green-500 font-bold">✓</span> Premium Support
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button class="flex-grow bg-yellow-400 text-black font-bold py-4 rounded-xl hover:bg-yellow-500 transition uppercase tracking-wide shadow-lg shadow-yellow-400/30 transform hover:-translate-y-1">
+                            Add to Cart
+                        </button>
+                        <button class="px-6 py-4 border border-[var(--border-color)] rounded-xl hover:border-yellow-400 hover:text-yellow-600 transition bg-[var(--bg-card)] text-[var(--text-main)]">
+                            ♥
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                
+                <!-- Left Column: Details & Reviews -->
+                <div class="lg:col-span-2">
+                    <!-- Tabs -->
+                    <div class="border-b border-[var(--border-color)] mb-8 sticky top-20 bg-[var(--bg-secondary)] pt-4 z-20">
+                        <div class="flex gap-8 overflow-x-auto">
+                            <button class="pb-4 border-b-2 border-yellow-400 text-[var(--text-main)] font-bold whitespace-nowrap">Description</button>
+                            <button class="pb-4 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-main)] transition whitespace-nowrap">Technical Specs</button>
+                            <button class="pb-4 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-main)] transition whitespace-nowrap">Reviews (24)</button>
+                            <button class="pb-4 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-main)] transition whitespace-nowrap">FAQ</button>
+                        </div>
+                    </div>
+
+                    <!-- Description Content -->
+                    <div class="mb-12 prose max-w-none text-[var(--text-muted)]">
+                        <h3 class="text-2xl font-bold text-[var(--text-main)] mb-4">Product Overview</h3>
+                        <p class="mb-4">
+                            Start your development with a professional foundation. Neon Dashboard provides a robust set of UI components designed to speed up your workflow. Whether you are building a complex SaaS platform or a simple analytics tool, this template adapts to your needs.
+                        </p>
+                        <p class="mb-4">
+                            The codebase is structured for scalability, using modern best practices. Each component is modular and can be easily customized via utility classes.
+                        </p>
+                    </div>
+
+                    <!-- Tech Specs Table -->
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-bold text-[var(--text-main)] mb-6">Technical Specifications</h3>
+                        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden shadow-sm">
+                            <table class="w-full text-left text-sm text-[var(--text-muted)]">
+                                <tbody class="divide-y divide-[var(--border-color)]">
+                                    <tr class="hover:bg-[var(--bg-secondary)]">
+                                        <td class="px-6 py-4 font-bold w-1/3 bg-[var(--bg-secondary)]">Framework</td>
+                                        <td class="px-6 py-4">React 18, Next.js 13</td>
+                                    </tr>
+                                    <tr class="hover:bg-[var(--bg-secondary)]">
+                                        <td class="px-6 py-4 font-bold w-1/3 bg-[var(--bg-secondary)]">Language</td>
+                                        <td class="px-6 py-4">TypeScript / JavaScript</td>
+                                    </tr>
+                                    <tr class="hover:bg-[var(--bg-secondary)]">
+                                        <td class="px-6 py-4 font-bold w-1/3 bg-[var(--bg-secondary)]">CSS</td>
+                                        <td class="px-6 py-4">Tailwind CSS 3.3</td>
+                                    </tr>
+                                    <tr class="hover:bg-[var(--bg-secondary)]">
+                                        <td class="px-6 py-4 font-bold w-1/3 bg-[var(--bg-secondary)]">Icons</td>
+                                        <td class="px-6 py-4">Heroicons, FontAwesome</td>
+                                    </tr>
+                                    <tr class="hover:bg-[var(--bg-secondary)]">
+                                        <td class="px-6 py-4 font-bold w-1/3 bg-[var(--bg-secondary)]">Browser Support</td>
+                                        <td class="px-6 py-4">Chrome, Firefox, Safari, Edge</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ Accordion (Visual) -->
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-bold text-[var(--text-main)] mb-6">Frequently Asked Questions</h3>
+                        <div class="space-y-4">
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg p-6 shadow-sm">
+                                <h4 class="font-bold text-[var(--text-main)] mb-2">Is this compatible with Vue.js?</h4>
+                                <p class="text-[var(--text-muted)] text-sm">This specific version is for React. However, we have a separate Vue version available in our catalog.</p>
+                            </div>
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg p-6 shadow-sm">
+                                <h4 class="font-bold text-[var(--text-main)] mb-2">Can I use this for client projects?</h4>
+                                <p class="text-[var(--text-muted)] text-sm">Yes! The Standard License allows for use in a single end product, which end users can be charged for.</p>
+                            </div>
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg p-6 shadow-sm">
+                                <h4 class="font-bold text-[var(--text-main)] mb-2">How do I get updates?</h4>
+                                <p class="text-[var(--text-muted)] text-sm">Updates are automatically available in your account dashboard. You will receive an email notification when a new version is released.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews List -->
+                    <div class="mb-12">
+                         <h3 class="text-2xl font-bold text-[var(--text-main)] mb-6">Customer Reviews</h3>
+                         <div class="space-y-6">
+                            <!-- Review 1 -->
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-xl shadow-sm">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-[var(--text-main)] text-[var(--bg-primary)] rounded-full flex items-center justify-center font-bold text-xs">JD</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm text-[var(--text-main)]">John Doe</h4>
+                                            <span class="text-xs text-[var(--text-muted)]">2 days ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-yellow-500 text-sm">★★★★★</div>
+                                </div>
+                                <p class="text-[var(--text-muted)] text-sm leading-relaxed">Absolutely stunning design. The code is clean and easy to integrate into my React project. Highly recommended for anyone looking to save time on UI!</p>
+                            </div>
+
+                            <!-- Review 2 -->
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-xl shadow-sm">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs">AS</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm text-[var(--text-main)]">Alice Smith</h4>
+                                            <span class="text-xs text-[var(--text-muted)]">1 week ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-yellow-500 text-sm">★★★★☆</div>
+                                </div>
+                                <p class="text-[var(--text-muted)] text-sm leading-relaxed">Great template, but I wish there were more examples for the charts. Support was helpful though and provided a fix quickly.</p>
+                            </div>
+
+                            <!-- Review 3 -->
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-6 rounded-xl shadow-sm">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-xs">MK</div>
+                                        <div>
+                                            <h4 class="font-bold text-sm text-[var(--text-main)]">Mike K.</h4>
+                                            <span class="text-xs text-[var(--text-muted)]">2 weeks ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-yellow-500 text-sm">★★★★★</div>
+                                </div>
+                                <p class="text-[var(--text-muted)] text-sm leading-relaxed">Value for money is insane. Saved me weeks of development time. The dark mode implementation is perfect.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Sidebar -->
+                <div class="lg:col-span-1 space-y-8">
+                    
+                    <!-- Creator Profile -->
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
+                        <h4 class="font-bold text-[var(--text-main)] mb-4 uppercase text-xs tracking-wider">Created By</h4>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-xl">🦄</div>
+                            <div>
+                                <h5 class="font-bold text-[var(--text-main)]">PixelPerfect</h5>
+                                <p class="text-xs text-[var(--text-muted)]">Elite Author</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-between text-sm text-[var(--text-muted)] mb-6 bg-[var(--bg-secondary)] p-3 rounded">
+                            <div class="text-center">
+                                <span class="block font-bold text-[var(--text-main)]">2.5k</span>
+                                <span class="text-xs">Sales</span>
+                            </div>
+                            <div class="text-center">
+                                <span class="block font-bold text-[var(--text-main)]">4.9</span>
+                                <span class="text-xs">Rating</span>
+                            </div>
+                             <div class="text-center">
+                                <span class="block font-bold text-[var(--text-main)]">12</span>
+                                <span class="text-xs">Items</span>
+                            </div>
+                        </div>
+                        <button class="w-full border border-[var(--border-color)] rounded py-2 text-sm font-bold text-[var(--text-muted)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-main)] transition">View Portfolio</button>
+                    </div>
+
+                    <!-- Related Products -->
+                    <div>
+                         <h4 class="font-bold text-[var(--text-main)] mb-4 uppercase text-xs tracking-wider">Related Products</h4>
+                         <div class="space-y-4">
+                             <!-- Related 1 -->
+                             <a href="#" class="flex gap-4 group">
+                                 <div class="w-16 h-16 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg flex items-center justify-center text-2xl group-hover:border-yellow-400 transition">📊</div>
+                                 <div>
+                                     <h5 class="font-bold text-[var(--text-main)] text-sm group-hover:text-yellow-600 transition">Analytics Pro</h5>
+                                     <span class="text-xs text-[var(--text-muted)]">$39.00</span>
+                                 </div>
+                             </a>
+                             <!-- Related 2 -->
+                             <a href="#" class="flex gap-4 group">
+                                 <div class="w-16 h-16 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg flex items-center justify-center text-2xl group-hover:border-yellow-400 transition">📱</div>
+                                 <div>
+                                     <h5 class="font-bold text-[var(--text-main)] text-sm group-hover:text-yellow-600 transition">Mobile App UI</h5>
+                                     <span class="text-xs text-[var(--text-muted)]">$29.00</span>
+                                 </div>
+                             </a>
+                             <!-- Related 3 -->
+                             <a href="#" class="flex gap-4 group">
+                                 <div class="w-16 h-16 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg flex items-center justify-center text-2xl group-hover:border-yellow-400 transition">🎨</div>
+                                 <div>
+                                     <h5 class="font-bold text-[var(--text-main)] text-sm group-hover:text-yellow-600 transition">Art Portfolio</h5>
+                                     <span class="text-xs text-[var(--text-muted)]">$45.00</span>
+                                 </div>
+                             </a>
+                         </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-[var(--bg-primary)] border-t border-[var(--border-color)] py-6 text-center text-[var(--text-muted)] text-sm">
+        &copy; 2023 OlympDev
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+
+</body>
+</html>

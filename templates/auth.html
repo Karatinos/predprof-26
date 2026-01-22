@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympiad Project - Authentication</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body class="flex flex-col min-h-screen bg-slate-50">
+
+    <!-- Simple Header -->
+    <header class="w-full py-6 border-b border-neutral-200 bg-white shadow-sm">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter hover:text-yellow-600 transition flex items-center gap-2">
+                 <span class="bg-yellow-400 w-8 h-8 flex items-center justify-center rounded text-black text-lg">O</span>
+                <span class="text-neutral-900">OLYMP<span class="text-yellow-500">DEV</span></span>
+            </a>
+            <a href="index.html" class="text-sm text-neutral-500 hover:text-neutral-900 font-medium">← Back to Home</a>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center py-12 px-4">
+        <div class="w-full max-w-4xl bg-white border border-neutral-200 p-8 md:p-12 rounded-2xl shadow-xl">
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-bold text-neutral-900 mb-2">Create Account</h1>
+                <p class="text-neutral-500">Join our community of developers today.</p>
+            </div>
+
+            <form action="#" method="POST" class="space-y-8">
+                
+                <!-- Section: Account Info -->
+                <div class="space-y-6">
+                    <h3 class="text-lg font-semibold text-neutral-900 border-b border-neutral-100 pb-2">Account Information</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex flex-col">
+                            <label for="username" class="mb-2 text-sm font-medium text-neutral-700">Username *</label>
+                            <input type="text" id="username" name="username" placeholder="johndoe" class="p-3 rounded-lg transition w-full" required>
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="email" class="mb-2 text-sm font-medium text-neutral-700">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" class="p-3 rounded-lg transition w-full" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex flex-col">
+                            <label for="password" class="mb-2 text-sm font-medium text-neutral-700">Password *</label>
+                            <input type="password" id="password" name="password" placeholder="••••••••" class="p-3 rounded-lg transition w-full" required>
+                            <p class="text-xs text-neutral-400 mt-1">Must be at least 8 characters.</p>
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="confirm_password" class="mb-2 text-sm font-medium text-neutral-700">Confirm Password *</label>
+                            <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" class="p-3 rounded-lg transition w-full" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Personal Details -->
+                <div class="space-y-6">
+                    <h3 class="text-lg font-semibold text-neutral-900 border-b border-neutral-100 pb-2">Personal Details</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex flex-col">
+                            <label for="first_name" class="mb-2 text-sm font-medium text-neutral-700">First Name</label>
+                            <input type="text" id="first_name" name="first_name" placeholder="John" class="p-3 rounded-lg transition w-full">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="last_name" class="mb-2 text-sm font-medium text-neutral-700">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" placeholder="Doe" class="p-3 rounded-lg transition w-full">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="flex flex-col">
+                            <label for="dob" class="mb-2 text-sm font-medium text-neutral-700">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" class="p-3 rounded-lg transition w-full text-neutral-600">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="phone" class="mb-2 text-sm font-medium text-neutral-700">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" class="p-3 rounded-lg transition w-full">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="mb-2 text-sm font-medium text-neutral-700">Gender</label>
+                            <select name="gender" class="p-3 rounded-lg transition w-full">
+                                <option value="" disabled selected>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="nonbinary">Non-binary</option>
+                                <option value="other">Other</option>
+                                <option value="prefer_not_to_say">Prefer not to say</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label for="bio" class="mb-2 text-sm font-medium text-neutral-700">Short Bio</label>
+                        <textarea id="bio" name="bio" rows="3" placeholder="Tell us a bit about yourself..." class="p-3 rounded-lg transition w-full"></textarea>
+                    </div>
+                </div>
+
+                <!-- Section: Address -->
+                <div class="space-y-6">
+                    <h3 class="text-lg font-semibold text-neutral-900 border-b border-neutral-100 pb-2">Address</h3>
+                    
+                    <div class="flex flex-col">
+                        <label for="street_address" class="mb-2 text-sm font-medium text-neutral-700">Street Address</label>
+                        <input type="text" id="street_address" name="street_address" placeholder="123 Main St" class="p-3 rounded-lg transition w-full">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="flex flex-col">
+                            <label for="city" class="mb-2 text-sm font-medium text-neutral-700">City</label>
+                            <input type="text" id="city" name="city" placeholder="New York" class="p-3 rounded-lg transition w-full">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="state" class="mb-2 text-sm font-medium text-neutral-700">State / Province</label>
+                            <input type="text" id="state" name="state" placeholder="NY" class="p-3 rounded-lg transition w-full">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="zip" class="mb-2 text-sm font-medium text-neutral-700">Zip / Postal Code</label>
+                            <input type="text" id="zip" name="zip" placeholder="10001" class="p-3 rounded-lg transition w-full">
+                        </div>
+                    </div>
+                     <div class="flex flex-col">
+                        <label for="country" class="mb-2 text-sm font-medium text-neutral-700">Country</label>
+                        <select id="country" name="country" class="p-3 rounded-lg transition w-full">
+                            <option value="" disabled selected>Select your country</option>
+                            <option value="us">United States</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="ca">Canada</option>
+                            <option value="de">Germany</option>
+                            <option value="jp">Japan</option>
+                            <option value="au">Australia</option>
+                            <option value="br">Brazil</option>
+                            <option value="in">India</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section: Professional Links -->
+                <div class="space-y-6">
+                    <h3 class="text-lg font-semibold text-neutral-900 border-b border-neutral-100 pb-2">Professional Links</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex flex-col">
+                            <label for="linkedin" class="mb-2 text-sm font-medium text-neutral-700">LinkedIn URL</label>
+                            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/..." class="p-3 rounded-lg transition w-full">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="portfolio" class="mb-2 text-sm font-medium text-neutral-700">Portfolio URL</label>
+                            <input type="url" id="portfolio" name="portfolio" placeholder="https://mywebsite.com" class="p-3 rounded-lg transition w-full">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Security -->
+                <div class="space-y-6">
+                    <h3 class="text-lg font-semibold text-neutral-900 border-b border-neutral-100 pb-2">Security</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex flex-col">
+                            <label for="security_question" class="mb-2 text-sm font-medium text-neutral-700">Security Question</label>
+                            <select id="security_question" name="security_question" class="p-3 rounded-lg transition w-full">
+                                <option value="" disabled selected>Select a question</option>
+                                <option value="mother_maiden">What is your mother's maiden name?</option>
+                                <option value="first_pet">What was the name of your first pet?</option>
+                                <option value="first_school">What was the name of your first school?</option>
+                            </select>
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="security_answer" class="mb-2 text-sm font-medium text-neutral-700">Answer</label>
+                            <input type="text" id="security_answer" name="security_answer" placeholder="Your answer" class="p-3 rounded-lg transition w-full">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Avatar -->
+                <div class="space-y-6">
+                     <h3 class="text-lg font-semibold text-neutral-900 border-b border-neutral-100 pb-2">Profile Picture</h3>
+                    <div class="flex flex-col">
+                        <div class="relative border-dashed border-2 border-neutral-300 rounded-lg p-8 flex flex-col items-center justify-center hover:border-yellow-400 hover:bg-yellow-50 transition cursor-pointer group">
+                            <input type="file" id="avatar" name="avatar" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                            <div class="text-neutral-500 text-center group-hover:text-yellow-600 transition">
+                                <span class="block text-3xl mb-2">📂</span>
+                                <span class="text-sm font-medium">Click or drag file to upload</span>
+                                <p class="text-xs text-neutral-400 mt-1">JPG, PNG, GIF up to 5MB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Preferences & Terms -->
+                <div class="space-y-4 pt-4 border-t border-neutral-100">
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="newsletter" name="newsletter" type="checkbox" class="w-4 h-4 rounded border-neutral-300 text-yellow-500 focus:ring-yellow-500">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="newsletter" class="font-medium text-neutral-700">Subscribe to our monthly developer newsletter.</label>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="terms" name="terms" type="checkbox" required class="w-4 h-4 rounded border-neutral-300 text-yellow-500 focus:ring-yellow-500">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="terms" class="font-medium text-neutral-700">I agree to the <a href="#" class="text-yellow-600 hover:underline">Terms and Conditions</a> and <a href="#" class="text-yellow-600 hover:underline">Privacy Policy</a>.</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="pt-6">
+                    <button type="submit" class="w-full bg-yellow-400 text-black font-bold py-4 rounded-lg hover:bg-yellow-500 transition uppercase tracking-wide shadow-md shadow-yellow-400/20 transform hover:-translate-y-0.5">
+                        Create Account
+                    </button>
+                </div>
+
+                <div class="text-center text-sm text-neutral-500 mt-4">
+                    Already have an account? <a href="#" class="text-neutral-900 font-bold hover:text-yellow-600 underline">Sign In</a>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <footer class="py-6 text-center text-neutral-500 text-sm">
+        &copy; 2023 OlympDev Authentication System
+    </footer>
+
+</body>
+</html>
