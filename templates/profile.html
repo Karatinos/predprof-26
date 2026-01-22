@@ -173,6 +173,102 @@
                                 <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 20%" data-value="2"></div>
                             </div>
                         </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
+                                <h3 class="text-sm font-bold text-[var(--text-muted)] mb-4 uppercase tracking-wide">Velocity Line</h3>
+                                <svg class="line-chart" viewBox="0 0 320 180" preserveAspectRatio="none">
+                                    <line class="chart-grid" x1="0" y1="150" x2="320" y2="150"></line>
+                                    <line class="chart-grid" x1="0" y1="110" x2="320" y2="110"></line>
+                                    <line class="chart-grid" x1="0" y1="70" x2="320" y2="70"></line>
+                                    <path class="chart-area" d="M0 140 L40 120 L80 130 L120 95 L160 110 L200 70 L240 90 L280 40 L320 60 L320 180 L0 180 Z"></path>
+                                    <path class="chart-line" d="M0 140 L40 120 L80 130 L120 95 L160 110 L200 70 L240 90 L280 40 L320 60"></path>
+                                    <g class="chart-point" data-value="42">
+                                        <circle class="chart-hit" cx="0" cy="140" r="8"></circle>
+                                        <circle class="chart-dot" cx="0" cy="140" r="4"></circle>
+                                        <text class="chart-label" x="0" y="126">42</text>
+                                    </g>
+                                    <g class="chart-point" data-value="58">
+                                        <circle class="chart-hit" cx="40" cy="120" r="8"></circle>
+                                        <circle class="chart-dot" cx="40" cy="120" r="4"></circle>
+                                        <text class="chart-label" x="40" y="106">58</text>
+                                    </g>
+                                    <g class="chart-point" data-value="52">
+                                        <circle class="chart-hit" cx="80" cy="130" r="8"></circle>
+                                        <circle class="chart-dot" cx="80" cy="130" r="4"></circle>
+                                        <text class="chart-label" x="80" y="116">52</text>
+                                    </g>
+                                    <g class="chart-point" data-value="68">
+                                        <circle class="chart-hit" cx="120" cy="95" r="8"></circle>
+                                        <circle class="chart-dot" cx="120" cy="95" r="4"></circle>
+                                        <text class="chart-label" x="120" y="81">68</text>
+                                    </g>
+                                    <g class="chart-point" data-value="61">
+                                        <circle class="chart-hit" cx="160" cy="110" r="8"></circle>
+                                        <circle class="chart-dot" cx="160" cy="110" r="4"></circle>
+                                        <text class="chart-label" x="160" y="96">61</text>
+                                    </g>
+                                    <g class="chart-point" data-value="82">
+                                        <circle class="chart-hit" cx="200" cy="70" r="8"></circle>
+                                        <circle class="chart-dot" cx="200" cy="70" r="4"></circle>
+                                        <text class="chart-label" x="200" y="56">82</text>
+                                    </g>
+                                    <g class="chart-point" data-value="74">
+                                        <circle class="chart-hit" cx="240" cy="90" r="8"></circle>
+                                        <circle class="chart-dot" cx="240" cy="90" r="4"></circle>
+                                        <text class="chart-label" x="240" y="76">74</text>
+                                    </g>
+                                    <g class="chart-point" data-value="96">
+                                        <circle class="chart-hit" cx="280" cy="40" r="8"></circle>
+                                        <circle class="chart-dot" cx="280" cy="40" r="4"></circle>
+                                        <text class="chart-label" x="280" y="26">96</text>
+                                    </g>
+                                    <g class="chart-point" data-value="88">
+                                        <circle class="chart-hit" cx="320" cy="60" r="8"></circle>
+                                        <circle class="chart-dot" cx="320" cy="60" r="4"></circle>
+                                        <text class="chart-label" x="320" y="46">88</text>
+                                    </g>
+                                </svg>
+                                <p class="text-xs text-center text-[var(--text-muted)] mt-3">Weekly velocity (units/day)</p>
+                            </div>
+
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
+                                <h3 class="text-sm font-bold text-[var(--text-muted)] mb-4 uppercase tracking-wide">Load Split</h3>
+                                <div class="donut-chart">
+                                    <div class="donut-center">68%</div>
+                                </div>
+                                <ul class="chart-legend mt-4 text-xs text-[var(--text-muted)]">
+                                    <li><span class="legend-dot bg-yellow-400"></span> Line A — 40%</li>
+                                    <li><span class="legend-dot bg-sky-400"></span> Line B — 25%</li>
+                                    <li><span class="legend-dot bg-green-500"></span> QA — 20%</li>
+                                    <li><span class="legend-dot bg-slate-200"></span> Support — 15%</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
+                                <h3 class="text-sm font-bold text-[var(--text-muted)] mb-4 uppercase tracking-wide">Contrast Bars</h3>
+                                <div class="bar-chart bar-chart-contrast w-full flex justify-between items-end h-32 px-2">
+                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 25%" data-value="5"></div>
+                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 55%" data-value="9"></div>
+                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 35%" data-value="6"></div>
+                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 80%" data-value="12"></div>
+                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 45%" data-value="7"></div>
+                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 70%" data-value="10"></div>
+                                </div>
+                                <p class="text-xs text-center text-[var(--text-muted)] mt-3">Output by shift (contrast view)</p>
+                            </div>
+
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
+                                <h3 class="text-sm font-bold text-[var(--text-muted)] mb-4 uppercase tracking-wide">Capacity Gauge</h3>
+                                <div class="radial-chart">
+                                    <div class="radial-center">55%</div>
+                                </div>
+                                <ul class="chart-legend mt-4 text-xs text-[var(--text-muted)]">
+                                    <li><span class="legend-dot bg-orange-500"></span> Used — 55%</li>
+                                    <li><span class="legend-dot bg-slate-200"></span> Free — 45%</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Recent Activity Table -->
@@ -180,7 +276,7 @@
                         <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-[var(--text-main)]">
                              <span class="w-1 h-6 bg-yellow-400 rounded-full block"></span> Recent Logins
                         </h2>
-                        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden shadow-sm">
+                        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden shadow-lg ring-1 ring-yellow-400/10">
                             <table class="w-full text-left text-sm text-[var(--text-muted)]">
                                 <thead class="bg-[var(--bg-secondary)] uppercase font-bold text-xs text-[var(--text-muted)] border-b border-[var(--border-color)]">
                                     <tr>
@@ -191,17 +287,47 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-[var(--border-color)]">
-                                    <tr class="hover:bg-[var(--bg-secondary)] transition">
-                                        <td class="px-6 py-4 font-medium">Oct 24, 2023, 10:23 AM</td>
-                                        <td class="px-6 py-4 flex items-center gap-2"><span>💻</span> Chrome on macOS</td>
+                                    <tr class="group transition hover:bg-yellow-50/70 dark:hover:bg-yellow-900/10">
+                                        <td class="px-6 py-4 font-medium text-[var(--text-main)]">Oct 24, 2023, 10:23 AM</td>
+                                        <td class="px-6 py-4 flex items-center gap-2">
+                                            <span>💻</span>
+                                            <span class="transition group-hover:text-[var(--text-main)]">Chrome on macOS</span>
+                                        </td>
                                         <td class="px-6 py-4 font-mono text-xs">192.168.1.1</td>
-                                        <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold">Success</span></td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold transition group-hover:shadow-md">
+                                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                                Success
+                                            </span>
+                                        </td>
                                     </tr>
-                                    <tr class="hover:bg-[var(--bg-secondary)] transition">
-                                        <td class="px-6 py-4 font-medium">Oct 22, 2023, 08:45 PM</td>
-                                        <td class="px-6 py-4 flex items-center gap-2"><span>📱</span> Safari on iPhone</td>
+                                    <tr class="group transition hover:bg-yellow-50/70 dark:hover:bg-yellow-900/10">
+                                        <td class="px-6 py-4 font-medium text-[var(--text-main)]">Oct 22, 2023, 08:45 PM</td>
+                                        <td class="px-6 py-4 flex items-center gap-2">
+                                            <span>📱</span>
+                                            <span class="transition group-hover:text-[var(--text-main)]">Safari on iPhone</span>
+                                        </td>
                                         <td class="px-6 py-4 font-mono text-xs">10.0.0.5</td>
-                                        <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs font-bold">Success</span></td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold transition group-hover:shadow-md">
+                                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                                Success
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="group transition hover:bg-yellow-50/70 dark:hover:bg-yellow-900/10">
+                                        <td class="px-6 py-4 font-medium text-[var(--text-main)]">Oct 18, 2023, 07:10 AM</td>
+                                        <td class="px-6 py-4 flex items-center gap-2">
+                                            <span>🖥️</span>
+                                            <span class="transition group-hover:text-[var(--text-main)]">Edge on Windows</span>
+                                        </td>
+                                        <td class="px-6 py-4 font-mono text-xs">172.16.4.12</td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold transition group-hover:shadow-md">
+                                                <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
+                                                New device
+                                            </span>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -233,13 +359,13 @@
                                 <span class="text-2xl mb-1">🐛</span>
                                 <span class="text-[10px] font-bold text-purple-800 dark:text-purple-400 leading-tight">Bug Hunter</span>
                             </div>
-                            <div class="aspect-square bg-[var(--bg-secondary)] rounded-lg flex flex-col items-center justify-center p-2 text-center border border-[var(--border-color)] opacity-50 grayscale">
+                            <div class="aspect-square bg-[var(--bg-secondary)] rounded-lg flex flex-col items-center justify-center p-2 text-center border border-[var(--border-color)] opacity-70 text-slate-400 dark:text-slate-300">
                                 <span class="text-2xl mb-1">🏆</span>
-                                <span class="text-[10px] font-bold text-[var(--text-muted)] leading-tight">Winner</span>
+                                <span class="text-[10px] font-bold text-slate-400 dark:text-slate-300 leading-tight">Winner</span>
                             </div>
-                             <div class="aspect-square bg-[var(--bg-secondary)] rounded-lg flex flex-col items-center justify-center p-2 text-center border border-[var(--border-color)] opacity-50 grayscale">
+                             <div class="aspect-square bg-[var(--bg-secondary)] rounded-lg flex flex-col items-center justify-center p-2 text-center border border-[var(--border-color)] opacity-70 text-slate-400 dark:text-slate-300">
                                 <span class="text-2xl mb-1">⭐</span>
-                                <span class="text-[10px] font-bold text-[var(--text-muted)] leading-tight">Top Rated</span>
+                                <span class="text-[10px] font-bold text-slate-400 dark:text-slate-300 leading-tight">Top Rated</span>
                             </div>
                         </div>
                     </div>
@@ -271,25 +397,25 @@
                             </tr>
                         </thead>
                         <tbody class="text-sm">
-                            <tr>
+                            <tr class="transition hover:bg-[var(--bg-secondary)]/70">
                                 <td class="p-4 border-b border-[var(--border-color)] text-[var(--text-main)] font-medium">Public Projects</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">Unlimited</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-main)] font-bold bg-yellow-50 dark:bg-yellow-900/10">Unlimited</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">Unlimited</td>
                             </tr>
-                            <tr>
+                            <tr class="transition hover:bg-[var(--bg-secondary)]/70">
                                 <td class="p-4 border-b border-[var(--border-color)] text-[var(--text-main)] font-medium">Private Projects</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">3</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-main)] font-bold bg-yellow-50 dark:bg-yellow-900/10">20</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">Unlimited</td>
                             </tr>
-                            <tr>
+                            <tr class="transition hover:bg-[var(--bg-secondary)]/70">
                                 <td class="p-4 border-b border-[var(--border-color)] text-[var(--text-main)] font-medium">Storage</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">500 MB</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-main)] font-bold bg-yellow-50 dark:bg-yellow-900/10">10 GB</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">1 TB</td>
                             </tr>
-                            <tr>
+                            <tr class="transition hover:bg-[var(--bg-secondary)]/70">
                                 <td class="p-4 border-b border-[var(--border-color)] text-[var(--text-main)] font-medium">Support</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">Community</td>
                                 <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-main)] font-bold bg-yellow-50 dark:bg-yellow-900/10">Priority</td>
@@ -303,9 +429,69 @@
         </div>
     </main>
 
-    <footer class="bg-[var(--bg-primary)] border-t border-[var(--border-color)] py-6 text-center text-[var(--text-muted)] text-sm">
-        &copy; 2023 OlympDev
+        <!-- Footer -->
+    <footer class="bg-[var(--bg-primary)] border-t border-[var(--border-color)] pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <h4 class="text-2xl font-bold text-[var(--text-main)] mb-4 flex items-center gap-2">
+                        <span class="bg-yellow-400 w-6 h-6 flex items-center justify-center rounded text-black text-xs">O</span>
+                        OLYMP<span class="text-yellow-500">DEV</span>
+                    </h4>
+                    <p class="text-[var(--text-muted)] text-sm leading-relaxed mb-6">
+                        Empowering the next generation of web developers through competition and community.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">𝕏</a>
+                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">in</a>
+                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">gh</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold text-[var(--text-main)] mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-sm text-[var(--text-muted)]">
+                        <li><a href="index.html" class="hover:text-yellow-500 transition">Home</a></li>
+                        <li><a href="catalog.html" class="hover:text-yellow-500 transition">Catalog</a></li>
+                        <li><a href="profile.html" class="hover:text-yellow-500 transition">Profile</a></li>
+                        <li><a href="login.html" class="hover:text-yellow-500 transition">Login</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="font-bold text-[var(--text-main)] mb-4">Resources</h5>
+                    <ul class="space-y-2 text-sm text-[var(--text-muted)]">
+                        <li><a href="#" class="hover:text-yellow-500 transition">Documentation</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">API Reference</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Community Forum</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition">Help Center</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="font-bold text-[var(--text-main)] mb-4">Our Sponsors</h5>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">TECH CORP</div>
+                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">DEV STUDIO</div>
+                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">CLOUD INC</div>
+                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">CODE LABS</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-[var(--border-color)] pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-[var(--text-muted)]">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2023 OlympDev. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-[var(--text-main)]">Privacy Policy</a>
+                    <a href="#" class="hover:text-[var(--text-main)]">Terms of Service</a>
+                    <a href="#" class="hover:text-[var(--text-main)]">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
     </footer>
+
 
     <script>
         const themeToggle = document.getElementById('theme-toggle');
