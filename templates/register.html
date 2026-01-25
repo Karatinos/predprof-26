@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olympiad Project - Register</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
     <script>
-        // Inline Theme Script - Default to LIGHT
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.documentElement.classList.add('dark');
@@ -16,112 +14,100 @@
         }
     </script>
 </head>
-<body class="flex flex-col min-h-screen bg-[var(--bg-secondary)] text-[var(--text-main)]">
+<body>
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 w-full z-50 border-b transition-colors duration-300 bg-[var(--bg-primary)] border-[var(--border-color)]">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-            
-            <!-- Left Side: Logo & Nav -->
-            <div class="flex items-center gap-8">
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-2 font-bold text-2xl tracking-tighter hover:opacity-80 transition">
-                    <span class="bg-yellow-400 w-8 h-8 flex items-center justify-center rounded text-black text-lg font-bold">O</span>
-                    <span class="text-[var(--text-main)]">OLYMP<span class="text-yellow-500">DEV</span></span>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">O</span>
+                    <span class="logo-text">OLYMP<span>DEV</span></span>
                 </a>
-
-                <!-- Nav -->
-                <nav class="hidden md:flex items-center gap-6">
-                    <a href="index.html" class="font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition">Home</a>
-                    <a href="catalog.html" class="font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition">Catalog</a>
-                    <a href="profile.html" class="font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition">Your Account</a>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="catalog.html">Catalog</a>
+                    <a href="profile.html">Your Account</a>
                 </nav>
             </div>
-
-            <!-- Right Side: Actions -->
-            <div class="flex items-center gap-4">
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-[var(--bg-secondary)] text-[var(--text-main)] transition" title="Toggle Theme">
-                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                    <svg id="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
-
-                <!-- Profile Button -->
-                <a href="profile.html" class="p-2 rounded-full hover:bg-[var(--bg-secondary)] text-[var(--text-main)] transition" title="Go to Profile">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <a href="profile.html" class="icon-btn" title="Go to Profile">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </a>
-
-                <a href="login.html" class="hidden md:block text-sm font-semibold text-[var(--text-muted)] hover:text-[var(--text-main)]">Log In</a>
-                <a href="register.html" class="bg-[var(--text-main)] text-[var(--bg-primary)] px-4 py-2 rounded font-bold hover:bg-yellow-400 hover:text-black transition text-sm">Get Started</a>
-                <button class="md:hidden text-[var(--text-main)] text-2xl">☰</button>
+                <a href="login.html" class="btn-login">Log In</a>
+                <a href="register.html" class="btn btn-primary">Get Started</a>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow flex items-center justify-center py-24 px-4">
-        <div class="w-full max-w-4xl bg-[var(--bg-card)] border border-[var(--border-color)] p-8 md:p-12 rounded-2xl shadow-xl">
-            <div class="text-center mb-10">
-                <h1 class="text-3xl font-bold text-[var(--text-main)] mb-2">Create Account</h1>
-                <p class="text-[var(--text-muted)]">Join our community of developers today.</p>
+    <main class="main-content auth-wrapper">
+        <div class="auth-card auth-card-wide">
+            <div class="auth-header">
+                <h1 class="auth-title">Create Account</h1>
+                <p class="auth-subtitle">Join our community of developers today.</p>
             </div>
 
-            <form action="#" method="POST" class="space-y-8">
+            <form action="#" method="POST">
                 
                 <!-- Section: Account Info -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold text-[var(--text-main)] border-b border-[var(--border-color)] pb-2">Account Information</h3>
+                <div class="form-section">
+                    <h3 class="form-section-title">Account Information</h3>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col">
-                            <label for="username" class="mb-2 text-sm font-medium text-[var(--text-main)]">Username *</label>
-                            <input type="text" id="username" name="username" placeholder="johndoe" class="p-3 rounded-lg transition w-full" required>
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username *</label>
+                            <input type="text" id="username" name="username" placeholder="johndoe" class="form-input" required>
                         </div>
-                        <div class="flex flex-col">
-                            <label for="email" class="mb-2 text-sm font-medium text-[var(--text-main)]">Email Address *</label>
-                            <input type="email" id="email" name="email" placeholder="john@example.com" class="p-3 rounded-lg transition w-full" required>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" class="form-input" required>
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col">
-                            <label for="password" class="mb-2 text-sm font-medium text-[var(--text-main)]">Password *</label>
-                            <input type="password" id="password" name="password" placeholder="••••••••" class="p-3 rounded-lg transition w-full" required>
-                            <p class="text-xs text-[var(--text-muted)] mt-1">Must be at least 8 characters.</p>
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password *</label>
+                            <input type="password" id="password" name="password" placeholder="••••••••" class="form-input" required>
+                            <p class="input-hint">Must be at least 8 characters.</p>
                         </div>
-                        <div class="flex flex-col">
-                            <label for="confirm_password" class="mb-2 text-sm font-medium text-[var(--text-main)]">Confirm Password *</label>
-                            <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" class="p-3 rounded-lg transition w-full" required>
+                        <div class="form-group">
+                            <label for="confirm_password" class="form-label">Confirm Password *</label>
+                            <input type="password" id="confirm_password" name="confirm_password" placeholder="••••••••" class="form-input" required>
                         </div>
                     </div>
                 </div>
 
                 <!-- Section: Personal Details -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold text-[var(--text-main)] border-b border-[var(--border-color)] pb-2">Personal Details</h3>
+                <div class="form-section">
+                    <h3 class="form-section-title">Personal Details</h3>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col">
-                            <label for="first_name" class="mb-2 text-sm font-medium text-[var(--text-main)]">First Name</label>
-                            <input type="text" id="first_name" name="first_name" placeholder="John" class="p-3 rounded-lg transition w-full">
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" id="first_name" name="first_name" placeholder="John" class="form-input">
                         </div>
-                        <div class="flex flex-col">
-                            <label for="last_name" class="mb-2 text-sm font-medium text-[var(--text-main)]">Last Name</label>
-                            <input type="text" id="last_name" name="last_name" placeholder="Doe" class="p-3 rounded-lg transition w-full">
+                        <div class="form-group">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" placeholder="Doe" class="form-input">
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="flex flex-col">
-                            <label for="dob" class="mb-2 text-sm font-medium text-[var(--text-main)]">Date of Birth</label>
-                            <input type="date" id="dob" name="dob" class="p-3 rounded-lg transition w-full">
+                    <div class="form-row form-row-3">
+                        <div class="form-group">
+                            <label for="dob" class="form-label">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" class="form-input">
                         </div>
-                        <div class="flex flex-col">
-                            <label for="phone" class="mb-2 text-sm font-medium text-[var(--text-main)]">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" class="p-3 rounded-lg transition w-full">
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" class="form-input">
                         </div>
-                        <div class="flex flex-col">
-                            <label class="mb-2 text-sm font-medium text-[var(--text-main)]">Gender</label>
-                            <select name="gender" class="p-3 rounded-lg transition w-full">
+                        <div class="form-group">
+                            <label class="form-label">Gender</label>
+                            <select name="gender" class="form-select">
                                 <option value="" disabled selected>Select Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -132,38 +118,38 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col">
-                        <label for="bio" class="mb-2 text-sm font-medium text-[var(--text-main)]">Short Bio</label>
-                        <textarea id="bio" name="bio" rows="3" placeholder="Tell us a bit about yourself..." class="p-3 rounded-lg transition w-full"></textarea>
+                    <div class="form-group">
+                        <label for="bio" class="form-label">Short Bio</label>
+                        <textarea id="bio" name="bio" rows="3" placeholder="Tell us a bit about yourself..." class="form-textarea"></textarea>
                     </div>
                 </div>
 
                 <!-- Section: Address -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold text-[var(--text-main)] border-b border-[var(--border-color)] pb-2">Address</h3>
+                <div class="form-section">
+                    <h3 class="form-section-title">Address</h3>
                     
-                    <div class="flex flex-col">
-                        <label for="street_address" class="mb-2 text-sm font-medium text-[var(--text-main)]">Street Address</label>
-                        <input type="text" id="street_address" name="street_address" placeholder="123 Main St" class="p-3 rounded-lg transition w-full">
+                    <div class="form-group">
+                        <label for="street_address" class="form-label">Street Address</label>
+                        <input type="text" id="street_address" name="street_address" placeholder="123 Main St" class="form-input">
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="flex flex-col">
-                            <label for="city" class="mb-2 text-sm font-medium text-[var(--text-main)]">City</label>
-                            <input type="text" id="city" name="city" placeholder="New York" class="p-3 rounded-lg transition w-full">
+                    <div class="form-row form-row-3">
+                        <div class="form-group">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" id="city" name="city" placeholder="New York" class="form-input">
                         </div>
-                        <div class="flex flex-col">
-                            <label for="state" class="mb-2 text-sm font-medium text-[var(--text-main)]">State / Province</label>
-                            <input type="text" id="state" name="state" placeholder="NY" class="p-3 rounded-lg transition w-full">
+                        <div class="form-group">
+                            <label for="state" class="form-label">State / Province</label>
+                            <input type="text" id="state" name="state" placeholder="NY" class="form-input">
                         </div>
-                        <div class="flex flex-col">
-                            <label for="zip" class="mb-2 text-sm font-medium text-[var(--text-main)]">Zip / Postal Code</label>
-                            <input type="text" id="zip" name="zip" placeholder="10001" class="p-3 rounded-lg transition w-full">
+                        <div class="form-group">
+                            <label for="zip" class="form-label">Zip / Postal Code</label>
+                            <input type="text" id="zip" name="zip" placeholder="10001" class="form-input">
                         </div>
                     </div>
-                     <div class="flex flex-col">
-                        <label for="country" class="mb-2 text-sm font-medium text-[var(--text-main)]">Country</label>
-                        <select id="country" name="country" class="p-3 rounded-lg transition w-full">
+                     <div class="form-group">
+                        <label for="country" class="form-label">Country</label>
+                        <select id="country" name="country" class="form-select">
                             <option value="" disabled selected>Select your country</option>
                             <option value="us">United States</option>
                             <option value="uk">United Kingdom</option>
@@ -179,153 +165,141 @@
                 </div>
 
                 <!-- Section: Professional Links -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold text-[var(--text-main)] border-b border-[var(--border-color)] pb-2">Professional Links</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col">
-                            <label for="linkedin" class="mb-2 text-sm font-medium text-[var(--text-main)]">LinkedIn URL</label>
-                            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/..." class="p-3 rounded-lg transition w-full">
+                <div class="form-section">
+                    <h3 class="form-section-title">Professional Links</h3>
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label for="linkedin" class="form-label">LinkedIn URL</label>
+                            <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/..." class="form-input">
                         </div>
-                        <div class="flex flex-col">
-                            <label for="portfolio" class="mb-2 text-sm font-medium text-[var(--text-main)]">Portfolio URL</label>
-                            <input type="url" id="portfolio" name="portfolio" placeholder="https://mywebsite.com" class="p-3 rounded-lg transition w-full">
+                        <div class="form-group">
+                            <label for="portfolio" class="form-label">Portfolio URL</label>
+                            <input type="url" id="portfolio" name="portfolio" placeholder="https://mywebsite.com" class="form-input">
                         </div>
                     </div>
                 </div>
 
                 <!-- Section: Security -->
-                <div class="space-y-6">
-                    <h3 class="text-lg font-semibold text-[var(--text-main)] border-b border-[var(--border-color)] pb-2">Security</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="flex flex-col">
-                            <label for="security_question" class="mb-2 text-sm font-medium text-[var(--text-main)]">Security Question</label>
-                            <select id="security_question" name="security_question" class="p-3 rounded-lg transition w-full">
+                <div class="form-section">
+                    <h3 class="form-section-title">Security</h3>
+                    <div class="form-row form-row-2">
+                        <div class="form-group">
+                            <label for="security_question" class="form-label">Security Question</label>
+                            <select id="security_question" name="security_question" class="form-select">
                                 <option value="" disabled selected>Select a question</option>
                                 <option value="mother_maiden">What is your mother's maiden name?</option>
                                 <option value="first_pet">What was the name of your first pet?</option>
                                 <option value="first_school">What was the name of your first school?</option>
                             </select>
                         </div>
-                        <div class="flex flex-col">
-                            <label for="security_answer" class="mb-2 text-sm font-medium text-[var(--text-main)]">Answer</label>
-                            <input type="text" id="security_answer" name="security_answer" placeholder="Your answer" class="p-3 rounded-lg transition w-full">
+                        <div class="form-group">
+                            <label for="security_answer" class="form-label">Answer</label>
+                            <input type="text" id="security_answer" name="security_answer" placeholder="Your answer" class="form-input">
                         </div>
                     </div>
                 </div>
 
                 <!-- Section: Avatar -->
-                <div class="space-y-6">
-                     <h3 class="text-lg font-semibold text-[var(--text-main)] border-b border-[var(--border-color)] pb-2">Profile Picture</h3>
-                    <div class="flex flex-col">
-                        <div class="relative border-dashed border-2 border-[var(--border-color)] rounded-lg p-8 flex flex-col items-center justify-center hover:border-yellow-400 hover:bg-[var(--bg-secondary)] transition cursor-pointer group">
-                            <input type="file" id="avatar" name="avatar" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                            <div class="text-[var(--text-muted)] text-center group-hover:text-yellow-600 transition">
-                                <span class="block text-3xl mb-2">📂</span>
-                                <span class="text-sm font-medium">Click or drag file to upload</span>
-                                <p class="text-xs text-[var(--text-muted)] mt-1">JPG, PNG, GIF up to 5MB</p>
+                <div class="form-section">
+                     <h3 class="form-section-title">Profile Picture</h3>
+                    <div class="form-group">
+                        <div class="file-upload">
+                            <input type="file" id="avatar" name="avatar" class="file-input-hidden">
+                            <div style="pointer-events: none;">
+                                <span class="file-upload-icon">📂</span>
+                                <span class="file-upload-text">Click or drag file to upload</span>
+                                <p class="file-upload-hint">JPG, PNG, GIF up to 5MB</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Section: Preferences & Terms -->
-                <div class="space-y-4 pt-4 border-t border-[var(--border-color)]">
-                    <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                            <input id="newsletter" name="newsletter" type="checkbox" class="w-4 h-4 rounded border-[var(--border-color)] text-yellow-500 focus:ring-yellow-500">
-                        </div>
-                        <div class="ml-3 text-sm">
-                            <label for="newsletter" class="font-medium text-[var(--text-main)]">Subscribe to our monthly developer newsletter.</label>
-                        </div>
+                <div class="form-section" style="padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                    <div class="checkbox-group">
+                        <input id="newsletter" name="newsletter" type="checkbox" class="checkbox-input">
+                        <label for="newsletter" class="checkbox-label">Subscribe to our monthly developer newsletter.</label>
                     </div>
-                    <div class="flex items-start">
-                        <div class="flex items-center h-5">
-                            <input id="terms" name="terms" type="checkbox" required class="w-4 h-4 rounded border-[var(--border-color)] text-yellow-500 focus:ring-yellow-500">
-                        </div>
-                        <div class="ml-3 text-sm">
-                            <label for="terms" class="font-medium text-[var(--text-main)]">I agree to the <a href="#" class="text-yellow-600 hover:underline">Terms and Conditions</a> and <a href="#" class="text-yellow-600 hover:underline">Privacy Policy</a>.</label>
-                        </div>
+                    <div class="checkbox-group">
+                        <input id="terms" name="terms" type="checkbox" required class="checkbox-input">
+                        <label for="terms" class="checkbox-label">I agree to the <a href="#" class="link-accent">Terms and Conditions</a> and <a href="#" class="link-accent">Privacy Policy</a>.</label>
                     </div>
                 </div>
 
                 <!-- Actions -->
-                <div class="pt-6">
-                    <button type="submit" class="w-full bg-yellow-400 text-black font-bold py-4 rounded-lg hover:bg-yellow-500 transition uppercase tracking-wide shadow-md shadow-yellow-400/20 transform hover:-translate-y-0.5">
+                <div style="margin-top: 1.5rem;">
+                    <button type="submit" class="btn btn-primary btn-full" style="padding: 1rem;">
                         Create Account
                     </button>
                 </div>
 
-                <div class="text-center text-sm text-[var(--text-muted)] mt-4">
-                    Already have an account? <a href="login.html" class="text-[var(--text-main)] font-bold hover:text-yellow-600 underline">Sign In</a>
+                <div class="auth-footer">
+                    Already have an account? <a href="login.html" class="auth-footer-link">Sign In</a>
                 </div>
 
             </form>
         </div>
     </main>
 
-        <!-- Footer -->
-    <footer class="bg-[var(--bg-primary)] border-t border-[var(--border-color)] pt-16 pb-8">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div class="col-span-1 md:col-span-1">
-                    <h4 class="text-2xl font-bold text-[var(--text-main)] mb-4 flex items-center gap-2">
-                        <span class="bg-yellow-400 w-6 h-6 flex items-center justify-center rounded text-black text-xs">O</span>
-                        OLYMP<span class="text-yellow-500">DEV</span>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 class="logo footer-brand">
+                        <span class="logo-icon logo-icon-sm">O</span>
+                        <span class="logo-text footer-logo-text">OLYMP<span>DEV</span></span>
                     </h4>
-                    <p class="text-[var(--text-muted)] text-sm leading-relaxed mb-6">
+                    <p class="footer-desc">
                         Empowering the next generation of web developers through competition and community.
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">𝕏</a>
-                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">in</a>
-                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">gh</a>
+                    <div class="footer-social">
+                        <a href="#" class="icon-btn footer-social-link">𝕏</a>
+                        <a href="#" class="icon-btn footer-social-link">in</a>
+                        <a href="#" class="icon-btn footer-social-link">gh</a>
                     </div>
                 </div>
                 
                 <div>
-                    <h5 class="font-bold text-[var(--text-main)] mb-4">Quick Links</h5>
-                    <ul class="space-y-2 text-sm text-[var(--text-muted)]">
-                        <li><a href="index.html" class="hover:text-yellow-500 transition">Home</a></li>
-                        <li><a href="catalog.html" class="hover:text-yellow-500 transition">Catalog</a></li>
-                        <li><a href="profile.html" class="hover:text-yellow-500 transition">Profile</a></li>
-                        <li><a href="login.html" class="hover:text-yellow-500 transition">Login</a></li>
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="login.html">Login</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h5 class="font-bold text-[var(--text-main)] mb-4">Resources</h5>
-                    <ul class="space-y-2 text-sm text-[var(--text-muted)]">
-                        <li><a href="#" class="hover:text-yellow-500 transition">Documentation</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition">API Reference</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition">Community Forum</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition">Help Center</a></li>
+                    <h5 class="footer-heading">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                        <li><a href="#">Help Center</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h5 class="font-bold text-[var(--text-main)] mb-4">Our Sponsors</h5>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">TECH CORP</div>
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">DEV STUDIO</div>
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">CLOUD INC</div>
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">CODE LABS</div>
+                    <h5 class="footer-heading">Our Sponsors</h5>
+                    <div class="sponsors-grid">
+                        <div class="sponsor-item">TECH CORP</div>
+                        <div class="sponsor-item">DEV STUDIO</div>
+                        <div class="sponsor-item">CLOUD INC</div>
+                        <div class="sponsor-item">CODE LABS</div>
                     </div>
                 </div>
             </div>
             
-            <div class="border-t border-[var(--border-color)] pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-[var(--text-muted)]">
-                <div class="mb-4 md:mb-0">
-                    <p>&copy; 2023 OlympDev. All rights reserved.</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-[var(--text-main)]">Privacy Policy</a>
-                    <a href="#" class="hover:text-[var(--text-main)]">Terms of Service</a>
-                    <a href="#" class="hover:text-[var(--text-main)]">Cookie Policy</a>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2023 OlympDev. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
-
 
     <script>
         const themeToggle = document.getElementById('theme-toggle');
@@ -341,6 +315,5 @@
             }
         });
     </script>
-
 </body>
 </html>

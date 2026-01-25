@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olympiad Project - Profile</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
     <script>
-        // Inline Theme Script - Default to LIGHT
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             document.documentElement.classList.add('dark');
@@ -16,482 +14,248 @@
         }
     </script>
 </head>
-<body class="flex flex-col min-h-screen bg-[var(--bg-secondary)] text-[var(--text-main)]">
+<body>
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 w-full z-50 border-b transition-colors duration-300 bg-[var(--bg-primary)] border-[var(--border-color)]">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-            
-            <!-- Left Side: Logo & Nav -->
-            <div class="flex items-center gap-8">
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-2 font-bold text-2xl tracking-tighter hover:opacity-80 transition">
-                    <span class="bg-yellow-400 w-8 h-8 flex items-center justify-center rounded text-black text-lg font-bold">O</span>
-                    <span class="text-[var(--text-main)]">OLYMP<span class="text-yellow-500">DEV</span></span>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="header-left">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">O</span>
+                    <span class="logo-text">OLYMP<span>DEV</span></span>
                 </a>
-
-                <!-- Nav -->
-                <nav class="hidden md:flex items-center gap-6">
-                    <a href="index.html" class="font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition">Home</a>
-                    <a href="catalog.html" class="font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition">Catalog</a>
-                    <a href="profile.html" class="font-medium text-[var(--text-main)] border-b-2 border-yellow-400 transition">Your Account</a>
+                <nav class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="catalog.html">Catalog</a>
+                    <a href="profile.html" class="active">Your Account</a>
                 </nav>
             </div>
-
-            <!-- Right Side: Actions -->
-            <div class="flex items-center gap-4">
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-[var(--bg-secondary)] text-[var(--text-main)] transition" title="Toggle Theme">
-                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                    <svg id="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
-
-                <!-- Profile Button (Requested) -->
-                <a href="profile.html" class="p-2 rounded-full hover:bg-[var(--bg-secondary)] text-[var(--text-main)] transition" title="Go to Profile">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <a href="profile.html" class="icon-btn" title="Go to Profile">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </a>
-
-                <a href="login.html" class="hidden md:block text-sm font-semibold text-[var(--text-muted)] hover:text-[var(--text-main)]">Log In</a>
-                <a href="register.html" class="bg-[var(--text-main)] text-[var(--bg-primary)] px-4 py-2 rounded font-bold hover:bg-yellow-400 hover:text-black transition text-sm">Get Started</a>
-                
-                <button class="md:hidden text-[var(--text-main)] text-2xl">☰</button>
+                <a href="login.html" class="btn-login">Log In</a>
+                <a href="register.html" class="btn btn-primary">Get Started</a>
             </div>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow pt-24 pb-12 px-4">
-        <div class="container mx-auto max-w-5xl">
+    <main class="main-content profile-container">
+        <div class="container profile-content-max">
             
             <!-- Profile Header -->
-            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-8 mb-8 flex flex-col md:flex-row items-center md:items-start gap-8 relative overflow-hidden shadow-sm">
+            <div class="profile-header">
                 <!-- Decorative background accent -->
-                <div class="absolute top-0 right-0 w-64 h-64 bg-yellow-100 rounded-full blur-3xl pointer-events-none -mr-16 -mt-16 opacity-60 dark:opacity-10"></div>
+                <div class="profile-bg-accent"></div>
 
                 <!-- Avatar -->
-                <div class="flex-shrink-0 relative">
-                    <div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-[var(--bg-secondary)] border-4 border-[var(--bg-card)] ring-4 ring-yellow-100 dark:ring-yellow-900/30 flex items-center justify-center overflow-hidden shadow-md">
-                        <span class="text-6xl">👨‍💻</span>
+                <div class="profile-avatar-wrapper">
+                    <div class="profile-avatar">
+                        👨‍💻
                     </div>
-                    <div class="absolute bottom-2 right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-[var(--bg-card)]" title="Online"></div>
                 </div>
 
                 <!-- User Info -->
-                <div class="flex-grow text-center md:text-left z-10">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                        <h1 class="text-3xl font-bold text-[var(--text-main)]">Alex Developer</h1>
-                        <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full border border-yellow-200 mt-2 md:mt-0 inline-block">Pro Member</span>
+                <div class="profile-info">
+                    <div class="profile-name-row">
+                        <h1 class="profile-name">Alex Developer</h1>
+                        <span class="profile-badge">Pro Member</span>
                     </div>
-                    <p class="text-[var(--text-muted)] font-medium mb-6">Full Stack Engineer & UI Enthusiast</p>
+                    <p class="profile-role">Full Stack Engineer & UI Enthusiast</p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm text-[var(--text-muted)] mb-6">
-                        <div class="flex items-center justify-center md:justify-start gap-2">
-                            <span class="text-lg">📧</span> alex.dev@example.com
+                    <div class="profile-details-grid">
+                        <div class="profile-detail-item">
+                            <span>📧</span> alex.dev@example.com
                         </div>
-                        <div class="flex items-center justify-center md:justify-start gap-2">
-                            <span class="text-lg">📱</span> +1 (555) 987-6543
+                        <div class="profile-detail-item">
+                            <span>📱</span> +1 (555) 987-6543
                         </div>
-                        <div class="flex items-center justify-center md:justify-start gap-2">
-                            <span class="text-lg">📍</span> San Francisco, USA
+                        <div class="profile-detail-item">
+                            <span>📍</span> San Francisco, USA
                         </div>
-                        <div class="flex items-center justify-center md:justify-start gap-2">
-                            <span class="text-lg">🏢</span> TechSolutions Inc.
+                        <div class="profile-detail-item">
+                            <span>🏢</span> TechSolutions Inc.
                         </div>
                     </div>
 
-                    <div class="flex justify-center md:justify-start gap-3">
-                        <button class="bg-[var(--text-main)] text-[var(--bg-primary)] border border-transparent px-6 py-2 rounded-lg hover:opacity-90 transition text-sm font-bold shadow-md">
-                            Edit Profile
-                        </button>
-                        <button class="bg-[var(--bg-primary)] text-[var(--text-main)] border border-[var(--border-color)] px-6 py-2 rounded-lg hover:border-yellow-400 hover:text-yellow-600 transition text-sm font-bold">
-                            Share Profile
-                        </button>
+                    <div class="profile-actions">
+                        <button class="btn btn-primary">Edit Profile</button>
+                        <button class="btn btn-outline">Share Profile</button>
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-                
-                <!-- Left Column: Stats & Activity -->
-                <div class="lg:col-span-2 space-y-8">
+            <div class="profile-layout-grid">
+                <!-- Activity Statistics -->
+                <div>
+                     <h2 class="section-heading-bar">
+                        <span class="heading-accent-bar"></span> Activity Overview
+                    </h2>
                     
-                    <!-- Activity Statistics -->
-                    <div>
-                         <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-[var(--text-main)]">
-                            <span class="w-1 h-6 bg-yellow-400 rounded-full block"></span> Activity Overview
-                        </h2>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <!-- Stat 1 -->
-                            <div class="stat-card p-6 rounded-xl">
-                                <div class="flex justify-between items-end mb-4">
-                                    <div>
-                                        <p class="text-[var(--text-muted)] text-xs font-bold uppercase tracking-wide">Total Projects</p>
-                                        <span class="text-3xl font-bold text-[var(--text-main)]">24</span>
-                                    </div>
-                                    <span class="text-green-600 text-sm font-medium bg-green-50 dark:bg-green-900/30 px-2 py-1 rounded">+3 this month</span>
+                    <div class="stat-grid">
+                        <!-- Stat 1 -->
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div>
+                                    <p class="stat-label">Total Projects</p>
+                                    <span class="stat-value">24</span>
                                 </div>
-                                <div class="progress-bar w-full">
-                                    <div class="progress-fill" style="width: 75%"></div>
-                                </div>
-                                <p class="text-xs text-[var(--text-muted)] mt-2">Top 15% of contributors</p>
+                                <span class="stat-badge stat-badge-success">+3 this month</span>
                             </div>
-
-                            <!-- Stat 2 -->
-                            <div class="stat-card p-6 rounded-xl">
-                                <div class="flex justify-between items-end mb-4">
-                                    <div>
-                                        <p class="text-[var(--text-muted)] text-xs font-bold uppercase tracking-wide">Reputation Score</p>
-                                        <span class="text-3xl font-bold text-[var(--text-main)]">1,240</span>
-                                    </div>
-                                    <span class="text-yellow-600 text-sm font-medium bg-yellow-50 dark:bg-yellow-900/30 px-2 py-1 rounded">Level 4</span>
-                                </div>
-                                <div class="progress-bar w-full">
-                                    <div class="progress-fill bg-yellow-400" style="width: 60%"></div>
-                                </div>
-                                <p class="text-xs text-[var(--text-muted)] mt-2">360 points to next level</p>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 75%"></div>
                             </div>
+                            <p class="stat-desc">Top 15% of contributors</p>
                         </div>
 
-                        <!-- Contribution Graph (CSS Bar Chart) -->
-                        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
-                            <h3 class="text-sm font-bold text-[var(--text-muted)] mb-6 uppercase tracking-wide">Contribution History (Last 14 Days)</h3>
-                            <div class="bar-chart w-full flex justify-between items-end h-32 px-2">
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 20%" data-value="2"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 40%" data-value="5"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 60%" data-value="8"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 30%" data-value="3"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 90%" data-value="12"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 50%" data-value="6"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 10%" data-value="1"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 70%" data-value="9"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 40%" data-value="4"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 100%" data-value="15"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 60%" data-value="7"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 30%" data-value="3"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 10%" data-value="1"></div>
-                                <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 20%" data-value="2"></div>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
-                                <h3 class="text-sm font-bold text-[var(--text-muted)] mb-4 uppercase tracking-wide">Velocity Line</h3>
-                                <svg class="line-chart" viewBox="0 0 320 180" preserveAspectRatio="none">
-                                    <line class="chart-grid" x1="0" y1="150" x2="320" y2="150"></line>
-                                    <line class="chart-grid" x1="0" y1="110" x2="320" y2="110"></line>
-                                    <line class="chart-grid" x1="0" y1="70" x2="320" y2="70"></line>
-                                    <path class="chart-area" d="M0 140 L40 120 L80 130 L120 95 L160 110 L200 70 L240 90 L280 40 L320 60 L320 180 L0 180 Z"></path>
-                                    <path class="chart-line" d="M0 140 L40 120 L80 130 L120 95 L160 110 L200 70 L240 90 L280 40 L320 60"></path>
-                                    <g class="chart-point" data-value="42">
-                                        <circle class="chart-hit" cx="0" cy="140" r="8"></circle>
-                                        <circle class="chart-dot" cx="0" cy="140" r="4"></circle>
-                                        <text class="chart-label" x="0" y="126">42</text>
-                                    </g>
-                                    <g class="chart-point" data-value="58">
-                                        <circle class="chart-hit" cx="40" cy="120" r="8"></circle>
-                                        <circle class="chart-dot" cx="40" cy="120" r="4"></circle>
-                                        <text class="chart-label" x="40" y="106">58</text>
-                                    </g>
-                                    <g class="chart-point" data-value="52">
-                                        <circle class="chart-hit" cx="80" cy="130" r="8"></circle>
-                                        <circle class="chart-dot" cx="80" cy="130" r="4"></circle>
-                                        <text class="chart-label" x="80" y="116">52</text>
-                                    </g>
-                                    <g class="chart-point" data-value="68">
-                                        <circle class="chart-hit" cx="120" cy="95" r="8"></circle>
-                                        <circle class="chart-dot" cx="120" cy="95" r="4"></circle>
-                                        <text class="chart-label" x="120" y="81">68</text>
-                                    </g>
-                                    <g class="chart-point" data-value="61">
-                                        <circle class="chart-hit" cx="160" cy="110" r="8"></circle>
-                                        <circle class="chart-dot" cx="160" cy="110" r="4"></circle>
-                                        <text class="chart-label" x="160" y="96">61</text>
-                                    </g>
-                                    <g class="chart-point" data-value="82">
-                                        <circle class="chart-hit" cx="200" cy="70" r="8"></circle>
-                                        <circle class="chart-dot" cx="200" cy="70" r="4"></circle>
-                                        <text class="chart-label" x="200" y="56">82</text>
-                                    </g>
-                                    <g class="chart-point" data-value="74">
-                                        <circle class="chart-hit" cx="240" cy="90" r="8"></circle>
-                                        <circle class="chart-dot" cx="240" cy="90" r="4"></circle>
-                                        <text class="chart-label" x="240" y="76">74</text>
-                                    </g>
-                                    <g class="chart-point" data-value="96">
-                                        <circle class="chart-hit" cx="280" cy="40" r="8"></circle>
-                                        <circle class="chart-dot" cx="280" cy="40" r="4"></circle>
-                                        <text class="chart-label" x="280" y="26">96</text>
-                                    </g>
-                                    <g class="chart-point" data-value="88">
-                                        <circle class="chart-hit" cx="320" cy="60" r="8"></circle>
-                                        <circle class="chart-dot" cx="320" cy="60" r="4"></circle>
-                                        <text class="chart-label" x="320" y="46">88</text>
-                                    </g>
-                                </svg>
-                                <p class="text-xs text-center text-[var(--text-muted)] mt-3">Weekly velocity (units/day)</p>
-                            </div>
-
-                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
-                                <h3 class="text-sm font-bold text-[var(--text-muted)] mb-4 uppercase tracking-wide">Load Split</h3>
-                                <div class="donut-chart">
-                                    <div class="donut-center">68%</div>
+                        <!-- Stat 2 -->
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div>
+                                    <p class="stat-label">Reputation Score</p>
+                                    <span class="stat-value">1,240</span>
                                 </div>
-                                <ul class="chart-legend mt-4 text-xs text-[var(--text-muted)]">
-                                    <li><span class="legend-dot bg-yellow-400"></span> Line A — 40%</li>
-                                    <li><span class="legend-dot bg-sky-400"></span> Line B — 25%</li>
-                                    <li><span class="legend-dot bg-green-500"></span> QA — 20%</li>
-                                    <li><span class="legend-dot bg-slate-200"></span> Support — 15%</li>
-                                </ul>
+                                <span class="stat-badge stat-badge-neutral">Level 4</span>
                             </div>
-
-                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
-                                <h3 class="text-sm font-bold text-[var(--text-muted)] mb-4 uppercase tracking-wide">Contrast Bars</h3>
-                                <div class="bar-chart bar-chart-contrast w-full flex justify-between items-end h-32 px-2">
-                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 25%" data-value="5"></div>
-                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 55%" data-value="9"></div>
-                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 35%" data-value="6"></div>
-                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 80%" data-value="12"></div>
-                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 45%" data-value="7"></div>
-                                    <div class="bar w-full mx-1 rounded-t-sm relative group cursor-pointer" style="height: 70%" data-value="10"></div>
-                                </div>
-                                <p class="text-xs text-center text-[var(--text-muted)] mt-3">Output by shift (contrast view)</p>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 60%"></div>
                             </div>
-
-                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
-                                <h3 class="text-sm font-bold text-[var(--text-muted)] mb-4 uppercase tracking-wide">Capacity Gauge</h3>
-                                <div class="radial-chart">
-                                    <div class="radial-center">55%</div>
-                                </div>
-                                <ul class="chart-legend mt-4 text-xs text-[var(--text-muted)]">
-                                    <li><span class="legend-dot bg-orange-500"></span> Used — 55%</li>
-                                    <li><span class="legend-dot bg-slate-200"></span> Free — 45%</li>
-                                </ul>
-                            </div>
+                            <p class="stat-desc">360 points to next level</p>
                         </div>
                     </div>
 
-                    <!-- Recent Activity Table -->
-                    <div>
-                        <h2 class="text-xl font-bold mb-4 flex items-center gap-2 text-[var(--text-main)]">
-                             <span class="w-1 h-6 bg-yellow-400 rounded-full block"></span> Recent Logins
-                        </h2>
-                        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden shadow-lg ring-1 ring-yellow-400/10">
-                            <table class="w-full text-left text-sm text-[var(--text-muted)]">
-                                <thead class="bg-[var(--bg-secondary)] uppercase font-bold text-xs text-[var(--text-muted)] border-b border-[var(--border-color)]">
-                                    <tr>
-                                        <th class="px-6 py-4">Date</th>
-                                        <th class="px-6 py-4">Device</th>
-                                        <th class="px-6 py-4">IP Address</th>
-                                        <th class="px-6 py-4">Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-[var(--border-color)]">
-                                    <tr class="group transition hover:bg-yellow-50/70 dark:hover:bg-yellow-900/10">
-                                        <td class="px-6 py-4 font-medium text-[var(--text-main)]">Oct 24, 2023, 10:23 AM</td>
-                                        <td class="px-6 py-4 flex items-center gap-2">
-                                            <span>💻</span>
-                                            <span class="transition group-hover:text-[var(--text-main)]">Chrome on macOS</span>
-                                        </td>
-                                        <td class="px-6 py-4 font-mono text-xs">192.168.1.1</td>
-                                        <td class="px-6 py-4">
-                                            <span class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold transition group-hover:shadow-md">
-                                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                                Success
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr class="group transition hover:bg-yellow-50/70 dark:hover:bg-yellow-900/10">
-                                        <td class="px-6 py-4 font-medium text-[var(--text-main)]">Oct 22, 2023, 08:45 PM</td>
-                                        <td class="px-6 py-4 flex items-center gap-2">
-                                            <span>📱</span>
-                                            <span class="transition group-hover:text-[var(--text-main)]">Safari on iPhone</span>
-                                        </td>
-                                        <td class="px-6 py-4 font-mono text-xs">10.0.0.5</td>
-                                        <td class="px-6 py-4">
-                                            <span class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold transition group-hover:shadow-md">
-                                                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                                Success
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr class="group transition hover:bg-yellow-50/70 dark:hover:bg-yellow-900/10">
-                                        <td class="px-6 py-4 font-medium text-[var(--text-main)]">Oct 18, 2023, 07:10 AM</td>
-                                        <td class="px-6 py-4 flex items-center gap-2">
-                                            <span>🖥️</span>
-                                            <span class="transition group-hover:text-[var(--text-main)]">Edge on Windows</span>
-                                        </td>
-                                        <td class="px-6 py-4 font-mono text-xs">172.16.4.12</td>
-                                        <td class="px-6 py-4">
-                                            <span class="inline-flex items-center gap-2 bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold transition group-hover:shadow-md">
-                                                <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span>
-                                                New device
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <!-- Contribution Graph (CSS Bar Chart) -->
+                    <div class="stat-card">
+                        <h3 class="chart-title">Contribution History (Last 14 Days)</h3>
+                        <div class="chart-container">
+                            <div class="chart-bar" style="height: 20%" data-value="2"></div>
+                            <div class="chart-bar" style="height: 40%" data-value="5"></div>
+                            <div class="chart-bar" style="height: 60%" data-value="8"></div>
+                            <div class="chart-bar" style="height: 30%" data-value="3"></div>
+                            <div class="chart-bar" style="height: 90%" data-value="12"></div>
+                            <div class="chart-bar" style="height: 50%" data-value="6"></div>
+                            <div class="chart-bar" style="height: 10%" data-value="1"></div>
+                            <div class="chart-bar" style="height: 70%" data-value="9"></div>
+                            <div class="chart-bar" style="height: 40%" data-value="4"></div>
+                            <div class="chart-bar" style="height: 100%" data-value="15"></div>
+                            <div class="chart-bar" style="height: 60%" data-value="7"></div>
+                            <div class="chart-bar" style="height: 30%" data-value="3"></div>
+                            <div class="chart-bar" style="height: 10%" data-value="1"></div>
+                            <div class="chart-bar" style="height: 20%" data-value="2"></div>
                         </div>
-                    </div>
-
-                </div>
-
-                <!-- Right Column: Skills & Badges -->
-                <div class="space-y-8">
-                    
-                    <!-- Achievements -->
-                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
-                        <h3 class="text-lg font-bold mb-4 text-[var(--text-main)] border-b border-[var(--border-color)] pb-2">Achievements</h3>
-                        <div class="grid grid-cols-3 gap-4">
-                            <div class="aspect-square bg-yellow-50 dark:bg-yellow-900/20 rounded-lg flex flex-col items-center justify-center p-2 text-center border border-yellow-100 dark:border-yellow-800 hover:border-yellow-400 transition cursor-help" title="Early Adopter: Joined in 2023">
-                                <span class="text-2xl mb-1">🏅</span>
-                                <span class="text-[10px] font-bold text-yellow-800 dark:text-yellow-400 leading-tight">Early Adopter</span>
-                            </div>
-                            <div class="aspect-square bg-blue-50 dark:bg-blue-900/20 rounded-lg flex flex-col items-center justify-center p-2 text-center border border-blue-100 dark:border-blue-800 hover:border-blue-400 transition cursor-help" title="Code Master: 10+ Projects">
-                                <span class="text-2xl mb-1">🚀</span>
-                                <span class="text-[10px] font-bold text-blue-800 dark:text-blue-400 leading-tight">Code Master</span>
-                            </div>
-                            <div class="aspect-square bg-green-50 dark:bg-green-900/20 rounded-lg flex flex-col items-center justify-center p-2 text-center border border-green-100 dark:border-green-800 hover:border-green-400 transition cursor-help" title="Helper: 50+ Forum Answers">
-                                <span class="text-2xl mb-1">🤝</span>
-                                <span class="text-[10px] font-bold text-green-800 dark:text-green-400 leading-tight">Helper</span>
-                            </div>
-                            <div class="aspect-square bg-purple-50 dark:bg-purple-900/20 rounded-lg flex flex-col items-center justify-center p-2 text-center border border-purple-100 dark:border-purple-800 hover:border-purple-400 transition cursor-help" title="Bug Hunter: Reported 5 Bugs">
-                                <span class="text-2xl mb-1">🐛</span>
-                                <span class="text-[10px] font-bold text-purple-800 dark:text-purple-400 leading-tight">Bug Hunter</span>
-                            </div>
-                            <div class="aspect-square bg-[var(--bg-secondary)] rounded-lg flex flex-col items-center justify-center p-2 text-center border border-[var(--border-color)] opacity-70 text-slate-400 dark:text-slate-300">
-                                <span class="text-2xl mb-1">🏆</span>
-                                <span class="text-[10px] font-bold text-slate-400 dark:text-slate-300 leading-tight">Winner</span>
-                            </div>
-                             <div class="aspect-square bg-[var(--bg-secondary)] rounded-lg flex flex-col items-center justify-center p-2 text-center border border-[var(--border-color)] opacity-70 text-slate-400 dark:text-slate-300">
-                                <span class="text-2xl mb-1">⭐</span>
-                                <span class="text-[10px] font-bold text-slate-400 dark:text-slate-300 leading-tight">Top Rated</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Skills -->
-                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl p-6 shadow-sm">
-                         <h3 class="text-lg font-bold mb-4 text-[var(--text-main)] border-b border-[var(--border-color)] pb-2">Top Skills</h3>
-                         <div class="flex flex-wrap gap-2">
-                             <span class="bg-[var(--bg-secondary)] text-[var(--text-main)] px-3 py-1 rounded-full text-sm font-medium hover:bg-yellow-400 hover:text-black transition cursor-default">JavaScript</span>
-                             <span class="bg-[var(--bg-secondary)] text-[var(--text-main)] px-3 py-1 rounded-full text-sm font-medium hover:bg-yellow-400 hover:text-black transition cursor-default">React</span>
-                             <span class="bg-[var(--bg-secondary)] text-[var(--text-main)] px-3 py-1 rounded-full text-sm font-medium hover:bg-yellow-400 hover:text-black transition cursor-default">Node.js</span>
-                             <span class="bg-[var(--bg-secondary)] text-[var(--text-main)] px-3 py-1 rounded-full text-sm font-medium hover:bg-yellow-400 hover:text-black transition cursor-default">Python</span>
-                         </div>
                     </div>
                 </div>
+
+                <!-- Comparison Table -->
+                <div class="comparison-table-wrapper">
+                    <h2 class="comparison-title">Plan Comparison</h2>
+                    <div class="table-scroll">
+                        <table class="comparison-table">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>Free</th>
+                                    <th class="highlight-header">Pro</th>
+                                    <th>Enterprise</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Public Projects</td>
+                                    <td>Unlimited</td>
+                                    <td class="highlight-col font-bold">Unlimited</td>
+                                    <td>Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <td>Private Projects</td>
+                                    <td>3</td>
+                                    <td class="highlight-col font-bold">20</td>
+                                    <td>Unlimited</td>
+                                </tr>
+                                <tr>
+                                    <td>Storage</td>
+                                    <td>500 MB</td>
+                                    <td class="highlight-col font-bold">10 GB</td>
+                                    <td>1 TB</td>
+                                </tr>
+                                <tr>
+                                    <td>Support</td>
+                                    <td>Community</td>
+                                    <td class="highlight-col font-bold">Priority</td>
+                                    <td>Dedicated</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
-
-            <!-- Comparison Table (Placeholder Requested) -->
-            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-8 shadow-sm">
-                <h2 class="text-2xl font-bold mb-6 text-[var(--text-main)] text-center">Plan Comparison</h2>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr>
-                                <th class="p-4 border-b-2 border-[var(--border-color)] text-[var(--text-muted)]">Feature</th>
-                                <th class="p-4 border-b-2 border-[var(--border-color)] text-[var(--text-main)] text-center w-1/4">Free</th>
-                                <th class="p-4 border-b-2 border-yellow-400 text-[var(--text-main)] text-center w-1/4 bg-yellow-50 dark:bg-yellow-900/10">Pro</th>
-                                <th class="p-4 border-b-2 border-[var(--border-color)] text-[var(--text-main)] text-center w-1/4">Enterprise</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm">
-                            <tr class="transition hover:bg-[var(--bg-secondary)]/70">
-                                <td class="p-4 border-b border-[var(--border-color)] text-[var(--text-main)] font-medium">Public Projects</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">Unlimited</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-main)] font-bold bg-yellow-50 dark:bg-yellow-900/10">Unlimited</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">Unlimited</td>
-                            </tr>
-                            <tr class="transition hover:bg-[var(--bg-secondary)]/70">
-                                <td class="p-4 border-b border-[var(--border-color)] text-[var(--text-main)] font-medium">Private Projects</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">3</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-main)] font-bold bg-yellow-50 dark:bg-yellow-900/10">20</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">Unlimited</td>
-                            </tr>
-                            <tr class="transition hover:bg-[var(--bg-secondary)]/70">
-                                <td class="p-4 border-b border-[var(--border-color)] text-[var(--text-main)] font-medium">Storage</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">500 MB</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-main)] font-bold bg-yellow-50 dark:bg-yellow-900/10">10 GB</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">1 TB</td>
-                            </tr>
-                            <tr class="transition hover:bg-[var(--bg-secondary)]/70">
-                                <td class="p-4 border-b border-[var(--border-color)] text-[var(--text-main)] font-medium">Support</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">Community</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-main)] font-bold bg-yellow-50 dark:bg-yellow-900/10">Priority</td>
-                                <td class="p-4 border-b border-[var(--border-color)] text-center text-[var(--text-muted)]">Dedicated</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
         </div>
     </main>
 
-        <!-- Footer -->
-    <footer class="bg-[var(--bg-primary)] border-t border-[var(--border-color)] pt-16 pb-8">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div class="col-span-1 md:col-span-1">
-                    <h4 class="text-2xl font-bold text-[var(--text-main)] mb-4 flex items-center gap-2">
-                        <span class="bg-yellow-400 w-6 h-6 flex items-center justify-center rounded text-black text-xs">O</span>
-                        OLYMP<span class="text-yellow-500">DEV</span>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 class="logo footer-brand">
+                        <span class="logo-icon logo-icon-sm">O</span>
+                        <span class="logo-text footer-logo-text">OLYMP<span>DEV</span></span>
                     </h4>
-                    <p class="text-[var(--text-muted)] text-sm leading-relaxed mb-6">
+                    <p class="footer-desc">
                         Empowering the next generation of web developers through competition and community.
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">𝕏</a>
-                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">in</a>
-                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">gh</a>
+                    <div class="footer-social">
+                        <a href="#" class="icon-btn footer-social-link">𝕏</a>
+                        <a href="#" class="icon-btn footer-social-link">in</a>
+                        <a href="#" class="icon-btn footer-social-link">gh</a>
                     </div>
                 </div>
                 
                 <div>
-                    <h5 class="font-bold text-[var(--text-main)] mb-4">Quick Links</h5>
-                    <ul class="space-y-2 text-sm text-[var(--text-muted)]">
-                        <li><a href="index.html" class="hover:text-yellow-500 transition">Home</a></li>
-                        <li><a href="catalog.html" class="hover:text-yellow-500 transition">Catalog</a></li>
-                        <li><a href="profile.html" class="hover:text-yellow-500 transition">Profile</a></li>
-                        <li><a href="login.html" class="hover:text-yellow-500 transition">Login</a></li>
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="login.html">Login</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h5 class="font-bold text-[var(--text-main)] mb-4">Resources</h5>
-                    <ul class="space-y-2 text-sm text-[var(--text-muted)]">
-                        <li><a href="#" class="hover:text-yellow-500 transition">Documentation</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition">API Reference</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition">Community Forum</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition">Help Center</a></li>
+                    <h5 class="footer-heading">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                        <li><a href="#">Help Center</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h5 class="font-bold text-[var(--text-main)] mb-4">Our Sponsors</h5>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">TECH CORP</div>
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">DEV STUDIO</div>
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">CLOUD INC</div>
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">CODE LABS</div>
+                    <h5 class="footer-heading">Our Sponsors</h5>
+                    <div class="sponsors-grid">
+                        <div class="sponsor-item">TECH CORP</div>
+                        <div class="sponsor-item">DEV STUDIO</div>
+                        <div class="sponsor-item">CLOUD INC</div>
+                        <div class="sponsor-item">CODE LABS</div>
                     </div>
                 </div>
             </div>
             
-            <div class="border-t border-[var(--border-color)] pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-[var(--text-muted)]">
-                <div class="mb-4 md:mb-0">
-                    <p>&copy; 2023 OlympDev. All rights reserved.</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-[var(--text-main)]">Privacy Policy</a>
-                    <a href="#" class="hover:text-[var(--text-main)]">Terms of Service</a>
-                    <a href="#" class="hover:text-[var(--text-main)]">Cookie Policy</a>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2023 OlympDev. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
-
 
     <script>
         const themeToggle = document.getElementById('theme-toggle');
@@ -507,6 +271,5 @@
             }
         });
     </script>
-
 </body>
 </html>

@@ -1,12 +1,13 @@
 from flask import Flask, render_template
 
-# Initialize Flask with template_folder set to current directory '.'
-# This fixes the "TemplateNotFound" error if files are in the root folder
+# Initialize Flask
+# We use standard folder structure: templates/ for HTML, static/ for CSS/JS/Images
 app = Flask(__name__)
 
 # Homepage
+@app.route('/')
 @app.route('/index.html')
-def home():
+def index():
     return render_template('index.html')
 
 # Login Page
@@ -32,8 +33,6 @@ def catalog():
 # Item Detail Page
 @app.route('/item.html')
 def item():
-    # In a real app, you would fetch item details using the ID
-    # For now, we return the static item template
     return render_template('item.html')
 
 # Custom 404 Error Handler
@@ -42,4 +41,4 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8001)
+    app.run(debug=True)

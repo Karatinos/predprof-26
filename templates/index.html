@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Olympiad Project - Home</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="/static/style.css">
     <script>
         // Inline Theme Script - Default to LIGHT
         const savedTheme = localStorage.getItem('theme');
@@ -16,200 +15,182 @@
         }
     </script>
 </head>
-<body class="flex flex-col min-h-screen bg-[var(--bg-secondary)] text-[var(--text-main)]">
+<body>
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 w-full z-50 border-b transition-colors duration-300 bg-[var(--bg-primary)] border-[var(--border-color)]">
-        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-            
+    <header class="site-header">
+        <div class="container header-inner">
             <!-- Left Side: Logo & Nav -->
-            <div class="flex items-center gap-8">
+            <div class="header-left">
                 <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-2 font-bold text-2xl tracking-tighter hover:opacity-80 transition">
-                    <span class="bg-yellow-400 w-8 h-8 flex items-center justify-center rounded text-black text-lg font-bold">O</span>
-                    <span class="text-[var(--text-main)]">OLYMP<span class="text-yellow-500">DEV</span></span>
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">O</span>
+                    <span class="logo-text">OLYMP<span>DEV</span></span>
                 </a>
 
                 <!-- Nav -->
-                <nav class="hidden md:flex items-center gap-6">
-                    <a href="index.html" class="font-medium text-[var(--text-main)] border-b-2 border-yellow-400 transition">Home</a>
-                    <a href="catalog.html" class="font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition">Catalog</a>
-                    <a href="profile.html" class="font-medium text-[var(--text-muted)] hover:text-[var(--text-main)] transition">Your Account</a>
+                <nav class="nav-links">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="catalog.html">Catalog</a>
+                    <a href="profile.html">Your Account</a>
                 </nav>
             </div>
 
             <!-- Right Side: Actions -->
-            <div class="flex items-center gap-4">
+            <div class="header-actions">
                 <!-- Theme Toggle -->
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-[var(--bg-secondary)] text-[var(--text-main)] transition" title="Toggle Theme">
-                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                <button id="theme-toggle" class="icon-btn" title="Toggle Theme">
+                    <svg id="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
                 </button>
 
                 <!-- Profile Button -->
-                <a href="profile.html" class="p-2 rounded-full hover:bg-[var(--bg-secondary)] text-[var(--text-main)] transition" title="Go to Profile">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <a href="profile.html" class="icon-btn" title="Go to Profile">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </a>
 
-                <a href="login.html" class="hidden md:block text-sm font-semibold text-[var(--text-muted)] hover:text-[var(--text-main)]">Log In</a>
-                <a href="register.html" class="bg-[var(--text-main)] text-[var(--bg-primary)] px-4 py-2 rounded font-bold hover:bg-yellow-400 hover:text-black transition text-sm">Get Started</a>
-                
-                <button class="md:hidden text-[var(--text-main)] text-2xl">☰</button>
+                <a href="login.html" class="btn-login">Log In</a>
+                <a href="register.html" class="btn btn-primary">Get Started</a>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow pt-20">
+    <main class="main-content">
         
         <!-- Hero / Carousel Section -->
-        <section class="relative w-full mb-12">
-            <div id="hero-carousel" class="carousel">
+        <section class="carousel-container">
+            <div class="carousel">
                 <!-- Slide 1 -->
-                <div class="slide" data-slide="0" style="background-image: url('https://placehold.co/1920x800/f1f5f9/cbd5e1?text=Developers+Building+Future');">
+                <div class="slide slide-bg-1">
                     <div class="slide-content">
-                        <span class="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">The Olympiad</span>
-                        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-[var(--text-main)]">Build The <span class="text-yellow-500">Future</span></h1>
-                        <p class="text-xl text-[var(--text-muted)] mb-8 max-w-2xl mx-auto">Join the premier web development competition. Compete, collaborate, and showcase your skills to a global audience.</p>
-                        <div class="flex flex-col md:flex-row gap-4 justify-center">
-                            <a href="register.html" class="bg-yellow-400 text-black px-8 py-3 font-bold rounded hover:bg-yellow-500 transition shadow-lg shadow-yellow-400/30">Register Now</a>
-                            <a href="catalog.html" class="bg-[var(--bg-primary)] border border-[var(--border-color)] text-[var(--text-main)] px-8 py-3 font-bold rounded hover:bg-[var(--bg-secondary)] transition">Browse Resources</a>
+                        <span class="slide-badge">The Olympiad</span>
+                        <h1 class="slide-title">Build The <span>Future</span></h1>
+                        <p class="slide-desc">Join the premier web development competition. Compete, collaborate, and showcase your skills to a global audience.</p>
+                        <div class="slide-actions">
+                            <a href="register.html" class="btn btn-accent btn-lg">Register Now</a>
+                            <a href="catalog.html" class="btn btn-outline btn-lg btn-slide-outline">Browse Resources</a>
                         </div>
                     </div>
                 </div>
                 <!-- Slide 2 -->
-                <div class="slide" data-slide="1" style="background-image: url('https://placehold.co/1920x800/e2e8f0/94a3b8?text=Innovative+Tools');">
+                <div class="slide slide-bg-2">
                     <div class="slide-content">
-                        <span class="bg-[var(--text-main)] text-[var(--bg-primary)] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">New Arrivals</span>
-                        <h2 class="text-4xl md:text-6xl font-bold mb-6 text-[var(--text-main)]">Discover <span class="text-yellow-500">Innovation</span></h2>
-                        <p class="text-xl text-[var(--text-muted)] mb-8">Access our exclusive catalog of cutting-edge project templates and developer resources.</p>
-                        <a href="catalog.html" class="border-2 border-yellow-500 text-yellow-500 px-8 py-3 font-bold rounded hover:bg-yellow-500 hover:text-black transition">View Catalog</a>
+                        <span class="slide-badge slide-badge-new">New Arrivals</span>
+                        <h2 class="slide-title">Discover <span>Innovation</span></h2>
+                        <p class="slide-desc">Access our exclusive catalog of cutting-edge project templates and developer resources.</p>
+                        <a href="catalog.html" class="btn btn-accent btn-lg">View Catalog</a>
                     </div>
                 </div>
                 <!-- Slide 3 -->
-                <div class="slide" data-slide="2" style="background-image: url('https://placehold.co/1920x800/f8fafc/cbd5e1?text=Community+Driven');">
+                <div class="slide slide-bg-3">
                     <div class="slide-content">
-                        <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">Community</span>
-                        <h2 class="text-4xl md:text-6xl font-bold mb-6 text-[var(--text-main)]">Join Our <span class="text-blue-600">Network</span></h2>
-                        <p class="text-xl text-[var(--text-muted)] mb-8">Connect with thousands of developers, designers, and creators from around the world.</p>
-                        <a href="profile.html" class="bg-[var(--text-main)] text-[var(--bg-primary)] px-8 py-3 font-bold rounded hover:opacity-90 transition">View Profiles</a>
+                        <span class="slide-badge slide-badge-community">Community</span>
+                        <h2 class="slide-title">Join Our <span>Network</span></h2>
+                        <p class="slide-desc">Connect with thousands of developers, designers, and creators from around the world.</p>
+                        <a href="profile.html" class="btn btn-primary btn-lg">View Profiles</a>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-controls">
-                <button class="carousel-arrow" type="button" id="carousel-prev" aria-label="Previous slide">←</button>
-                <button class="carousel-arrow" type="button" id="carousel-next" aria-label="Next slide">→</button>
-            </div>
-            <div class="carousel-progress" id="carousel-progress">
-                <button type="button" class="is-active" data-slide="0"><span class="progress-fill"></span></button>
-                <button type="button" data-slide="1"><span class="progress-fill"></span></button>
-                <button type="button" data-slide="2"><span class="progress-fill"></span></button>
             </div>
         </section>
 
         <!-- Features/Info Section -->
-        <section class="py-20 bg-[var(--bg-primary)]">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold mb-4 text-[var(--text-main)]">Why Participate?</h2>
-                    <p class="text-[var(--text-muted)] max-w-2xl mx-auto">We provide the platform, you provide the talent. Here is what makes our Olympiad unique.</p>
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Why Participate?</h2>
+                    <p class="section-subtitle">We provide the platform, you provide the talent. Here is what makes our Olympiad unique.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="features-grid">
                     <!-- Feature 1 -->
-                    <div class="p-8 bg-[var(--bg-secondary)] rounded-2xl hover:shadow-xl transition duration-300 border border-transparent hover:border-yellow-400 group">
-                        <div class="w-16 h-16 bg-[var(--bg-primary)] rounded-xl shadow-md flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition duration-300">🚀</div>
-                        <h3 class="text-xl font-bold mb-3 text-[var(--text-main)]">Fast Performance</h3>
-                        <p class="text-[var(--text-muted)] leading-relaxed">Our platform is optimized for speed using the latest web technologies to ensure a smooth experience.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3 class="feature-title">Fast Performance</h3>
+                        <p class="feature-text">Our platform is optimized for speed using the latest web technologies to ensure a smooth experience.</p>
                     </div>
                     <!-- Feature 2 -->
-                    <div class="p-8 bg-[var(--bg-secondary)] rounded-2xl hover:shadow-xl transition duration-300 border border-transparent hover:border-yellow-400 group">
-                        <div class="w-16 h-16 bg-[var(--bg-primary)] rounded-xl shadow-md flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition duration-300">🛡️</div>
-                        <h3 class="text-xl font-bold mb-3 text-[var(--text-main)]">Secure Platform</h3>
-                        <p class="text-[var(--text-muted)] leading-relaxed">Your data and intellectual property are protected with industry-standard security measures.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3 class="feature-title">Secure Platform</h3>
+                        <p class="feature-text">Your data and intellectual property are protected with industry-standard security measures.</p>
                     </div>
                     <!-- Feature 3 -->
-                    <div class="p-8 bg-[var(--bg-secondary)] rounded-2xl hover:shadow-xl transition duration-300 border border-transparent hover:border-yellow-400 group">
-                        <div class="w-16 h-16 bg-[var(--bg-primary)] rounded-xl shadow-md flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition duration-300">💡</div>
-                        <h3 class="text-xl font-bold mb-3 text-[var(--text-main)]">Creative Freedom</h3>
-                        <p class="text-[var(--text-muted)] leading-relaxed">Design and build without limits. We encourage unique styles and innovative solutions.</p>
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3 class="feature-title">Creative Freedom</h3>
+                        <p class="feature-text">Design and build without limits. We encourage unique styles and innovative solutions.</p>
                     </div>
                 </div>
             </div>
         </section>
         
         <!-- CTA Section -->
-        <section class="py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-950 text-[var(--bg-primary)] overflow-hidden relative">
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-yellow-400 rounded-full opacity-20 blur-3xl"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-sky-500 rounded-full opacity-15 blur-3xl"></div>
-            
-            <div class="container mx-auto px-6 relative z-10 text-center">
-                <h2 class="text-4xl font-bold mb-6 text-[var(--bg-primary)]">Ready to Start Your Journey?</h2>
-                <p class="text-slate-200 text-lg mb-10 max-w-2xl mx-auto opacity-90">Create an account today and get immediate access to our starter resources and community forums.</p>
-                <a href="register.html" class="inline-block bg-yellow-400 text-slate-900 font-bold py-4 px-10 rounded-full hover:bg-yellow-300 hover:scale-105 transition transform shadow-lg shadow-yellow-400/30">Create Free Account</a>
+        <section class="cta-section">
+            <div class="container cta-content">
+                <h2 class="cta-title">Ready to Start Your Journey?</h2>
+                <p class="cta-desc">Create an account today and get immediate access to our starter resources and community forums.</p>
+                <a href="register.html" class="btn btn-accent btn-lg btn-rounded">Create Free Account</a>
             </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-[var(--bg-primary)] border-t border-[var(--border-color)] pt-16 pb-8">
-        <div class="container mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div class="col-span-1 md:col-span-1">
-                    <h4 class="text-2xl font-bold text-[var(--text-main)] mb-4 flex items-center gap-2">
-                        <span class="bg-yellow-400 w-6 h-6 flex items-center justify-center rounded text-black text-xs">O</span>
-                        OLYMP<span class="text-yellow-500">DEV</span>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 class="logo footer-brand">
+                        <span class="logo-icon logo-icon-sm">O</span>
+                        <span class="logo-text footer-logo-text">OLYMP<span>DEV</span></span>
                     </h4>
-                    <p class="text-[var(--text-muted)] text-sm leading-relaxed mb-6">
+                    <p class="footer-desc">
                         Empowering the next generation of web developers through competition and community.
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">𝕏</a>
-                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">in</a>
-                        <a href="#" class="w-8 h-8 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--text-muted)] hover:bg-yellow-400 hover:text-black transition">gh</a>
+                    <div class="footer-social">
+                        <a href="#" class="icon-btn footer-social-link">𝕏</a>
+                        <a href="#" class="icon-btn footer-social-link">in</a>
+                        <a href="#" class="icon-btn footer-social-link">gh</a>
                     </div>
                 </div>
                 
                 <div>
-                    <h5 class="font-bold text-[var(--text-main)] mb-4">Quick Links</h5>
-                    <ul class="space-y-2 text-sm text-[var(--text-muted)]">
-                        <li><a href="index.html" class="hover:text-yellow-500 transition">Home</a></li>
-                        <li><a href="catalog.html" class="hover:text-yellow-500 transition">Catalog</a></li>
-                        <li><a href="profile.html" class="hover:text-yellow-500 transition">Profile</a></li>
-                        <li><a href="login.html" class="hover:text-yellow-500 transition">Login</a></li>
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="login.html">Login</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h5 class="font-bold text-[var(--text-main)] mb-4">Resources</h5>
-                    <ul class="space-y-2 text-sm text-[var(--text-muted)]">
-                        <li><a href="#" class="hover:text-yellow-500 transition">Documentation</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition">API Reference</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition">Community Forum</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition">Help Center</a></li>
+                    <h5 class="footer-heading">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API Reference</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                        <li><a href="#">Help Center</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h5 class="font-bold text-[var(--text-main)] mb-4">Our Sponsors</h5>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">TECH CORP</div>
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">DEV STUDIO</div>
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">CLOUD INC</div>
-                        <div class="h-10 bg-[var(--bg-secondary)] flex items-center justify-center rounded text-[10px] text-[var(--text-muted)] font-bold border border-[var(--border-color)]">CODE LABS</div>
+                    <h5 class="footer-heading">Our Sponsors</h5>
+                    <div class="sponsors-grid">
+                        <div class="sponsor-item">TECH CORP</div>
+                        <div class="sponsor-item">DEV STUDIO</div>
+                        <div class="sponsor-item">CLOUD INC</div>
+                        <div class="sponsor-item">CODE LABS</div>
                     </div>
                 </div>
             </div>
             
-            <div class="border-t border-[var(--border-color)] pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-[var(--text-muted)]">
-                <div class="mb-4 md:mb-0">
-                    <p>&copy; 2023 OlympDev. All rights reserved.</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-[var(--text-main)]">Privacy Policy</a>
-                    <a href="#" class="hover:text-[var(--text-main)]">Terms of Service</a>
-                    <a href="#" class="hover:text-[var(--text-main)]">Cookie Policy</a>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; 2023 OlympDev. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -226,60 +207,6 @@
             } else {
                 html.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
-            }
-        });
-
-        const carousel = document.getElementById('hero-carousel');
-        const slides = Array.from(document.querySelectorAll('#hero-carousel .slide'));
-        const progress = document.getElementById('carousel-progress');
-        const progressButtons = Array.from(progress.querySelectorAll('button'));
-        const prevButton = document.getElementById('carousel-prev');
-        const nextButton = document.getElementById('carousel-next');
-
-        let activeIndex = 0;
-
-        const updateIndicators = (index) => {
-            progressButtons.forEach((btn) => {
-                btn.classList.remove('is-active');
-                const fill = btn.querySelector('.progress-fill');
-                if (fill) {
-                    fill.style.animation = 'none';
-                    void fill.offsetHeight;
-                    fill.style.animation = '';
-                }
-            });
-            const activeButton = progressButtons[index];
-            if (activeButton) {
-                activeButton.classList.add('is-active');
-            }
-        };
-
-        const goToSlide = (index) => {
-            const safeIndex = (index + slides.length) % slides.length;
-            activeIndex = safeIndex;
-            const target = slides[safeIndex];
-            if (target) {
-                carousel.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
-                updateIndicators(safeIndex);
-            }
-        };
-
-        prevButton.addEventListener('click', () => goToSlide(activeIndex - 1));
-        nextButton.addEventListener('click', () => goToSlide(activeIndex + 1));
-
-        progressButtons.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                const index = Number(btn.dataset.slide);
-                goToSlide(index);
-            });
-        });
-
-        carousel.addEventListener('scroll', () => {
-            const slideWidth = slides[0]?.offsetWidth || 1;
-            const index = Math.round(carousel.scrollLeft / slideWidth);
-            if (index !== activeIndex) {
-                activeIndex = index;
-                updateIndicators(activeIndex);
             }
         });
     </script>
