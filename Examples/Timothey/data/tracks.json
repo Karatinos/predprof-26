@@ -110,5 +110,19 @@
     "image": "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&q=80",
     "rating": 4.9,
     "reviews": 267
+  },
+  {
+    "id": 9,
+    "name": "Бизарные приключения",
+    "description": "JoJO",
+    "category": "Сафари",
+    "price": 5,
+    "duration": "50",
+    "distance": "30 000",
+    "difficulty": "Экстремальный",
+    "country": "Египет",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvejpjnyElwQ6wTnCq6XTK8oB1lVc1wT_cgw&s",
+    "rating": 5.0,
+    "reviews": 0
   }
 ]
