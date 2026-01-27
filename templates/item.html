@@ -126,6 +126,7 @@
                 <!-- Left Column: Details & Reviews -->
                 <div class="item-tabs-container">
                     <!-- Tabs -->
+<<<<<<< HEAD
                     <div class="tabs-header">
                         <button class="tab-btn active">Description</button>
                         <button class="tab-btn">Technical Specs</button>
@@ -141,6 +142,37 @@
                                     <tr>
                                         <td class="specs-label">Framework</td>
                                         <td>React 18, Next.js 13</td>
+=======
+                    <div class="border-b border-[var(--border-color)] mb-8 sticky top-20 bg-[var(--bg-secondary)] pt-4 z-20">
+                        <div class="flex gap-8 overflow-x-auto" data-tabs>
+                            <button class="pb-4 border-b-2 border-yellow-400 text-[var(--text-main)] font-bold whitespace-nowrap" data-tab-target="description">Description</button>
+                            <button class="pb-4 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-main)] transition whitespace-nowrap" data-tab-target="specs">Technical Specs</button>
+                            <button class="pb-4 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-main)] transition whitespace-nowrap" data-tab-target="reviews">Reviews (24)</button>
+                            <button class="pb-4 border-b-2 border-transparent text-[var(--text-muted)] hover:text-[var(--text-main)] transition whitespace-nowrap" data-tab-target="faq">FAQ</button>
+                        </div>
+                    </div>
+
+                    <!-- Description Content -->
+                    <div class="mb-12 prose max-w-none text-[var(--text-muted)] tab-panel" data-tab-panel="description">
+                        <h3 class="text-2xl font-bold text-[var(--text-main)] mb-4">Product Overview</h3>
+                        <p class="mb-4">
+                            Start your development with a professional foundation. Neon Dashboard provides a robust set of UI components designed to speed up your workflow. Whether you are building a complex SaaS platform or a simple analytics tool, this template adapts to your needs.
+                        </p>
+                        <p class="mb-4">
+                            The codebase is structured for scalability, using modern best practices. Each component is modular and can be easily customized via utility classes.
+                        </p>
+                    </div>
+
+                    <!-- Tech Specs Table -->
+                    <div class="mb-12 tab-panel hidden" data-tab-panel="specs">
+                        <h3 class="text-2xl font-bold text-[var(--text-main)] mb-6">Technical Specifications</h3>
+                        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl overflow-hidden shadow-sm">
+                            <table class="w-full text-left text-sm text-[var(--text-muted)]">
+                                <tbody class="divide-y divide-[var(--border-color)]">
+                                    <tr class="hover:bg-[var(--bg-secondary)]">
+                                        <td class="px-6 py-4 font-bold w-1/3 bg-[var(--bg-secondary)]">Framework</td>
+                                        <td class="px-6 py-4">React 18, Next.js 13</td>
+>>>>>>> 1e352ed (update (port 8001))
                                     </tr>
                                     <tr>
                                         <td class="specs-label">Language</td>
@@ -158,11 +190,38 @@
                             </table>
                         </div>
                     </div>
+<<<<<<< HEAD
 
                     <!-- Reviews List -->
                     <div class="reviews-section">
                          <h3 class="specs-title">Customer Reviews</h3>
                          
+=======
+                    
+                    <!-- FAQ Accordion (Visual) -->
+                    <div class="mb-12 tab-panel hidden" data-tab-panel="faq">
+                        <h3 class="text-2xl font-bold text-[var(--text-main)] mb-6">Frequently Asked Questions</h3>
+                        <div class="space-y-4">
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg p-6 shadow-sm">
+                                <h4 class="font-bold text-[var(--text-main)] mb-2">Is this compatible with Vue.js?</h4>
+                                <p class="text-[var(--text-muted)] text-sm">This specific version is for React. However, we have a separate Vue version available in our catalog.</p>
+                            </div>
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg p-6 shadow-sm">
+                                <h4 class="font-bold text-[var(--text-main)] mb-2">Can I use this for client projects?</h4>
+                                <p class="text-[var(--text-muted)] text-sm">Yes! The Standard License allows for use in a single end product, which end users can be charged for.</p>
+                            </div>
+                            <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-lg p-6 shadow-sm">
+                                <h4 class="font-bold text-[var(--text-main)] mb-2">How do I get updates?</h4>
+                                <p class="text-[var(--text-muted)] text-sm">Updates are automatically available in your account dashboard. You will receive an email notification when a new version is released.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews List -->
+                    <div class="mb-12 tab-panel hidden" data-tab-panel="reviews">
+                         <h3 class="text-2xl font-bold text-[var(--text-main)] mb-6">Customer Reviews</h3>
+                         <div class="space-y-6">
+>>>>>>> 1e352ed (update (port 8001))
                             <!-- Review 1 -->
                             <div class="review-card">
                                 <div class="review-header">
@@ -274,5 +333,11 @@
             }
         });
     </script>
+<<<<<<< HEAD
+=======
+
+
+    <script src="static/site.js"></script>
+>>>>>>> 1e352ed (update (port 8001))
 </body>
 </html>

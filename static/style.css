@@ -6,6 +6,7 @@
     --bg-primary: #ffffff;
     --bg-secondary: #F7FFE3; /* Light Green */
     --bg-card: #ffffff;
+<<<<<<< HEAD
     --text-main: #263A2D; /* Dark Green */
     --text-muted: #3C9234; /* Medium Green */
     --border-color: #94FF42; /* Bright Green - used subtly */
@@ -36,6 +37,35 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+=======
+    --text-main: #0f172a; /* slate-900 */
+    --text-muted: #64748b; /* slate-500 */
+    --border-color: #e2e8f0; /* slate-200 */
+    --accent-color: #facc15; /* yellow-400 */
+    --accent-hover: #eab308; /* yellow-500 */
+    --accent-text: #000000;
+    --chart-bar: #475569;
+    --chart-contrast-accent: #facc15;
+    --chart-contrast-base: #1f2937;
+    --achievement-muted-bg: #f1f5f9;
+}
+
+.dark {
+    /* Dark Mode */
+    --bg-primary: #0f172a; /* slate-900 */
+    --bg-secondary: #1e293b; /* slate-800 */
+    --bg-card: #1e293b;
+    --text-main: #f8fafc; /* slate-50 */
+    --text-muted: #94a3b8; /* slate-400 */
+    --border-color: #334155; /* slate-700 */
+    --accent-color: #facc15;
+    --accent-hover: #eab308;
+    --accent-text: #000000;
+    --chart-bar: #94a3b8;
+    --chart-contrast-accent: #facc15;
+    --chart-contrast-base: #0f172a;
+    --achievement-muted-bg: #1f2937;
+>>>>>>> 1e352ed (update (port 8001))
 }
 
 body {
@@ -910,7 +940,7 @@ img {
 }
 .chart-bar {
     flex: 1;
-    background-color: var(--bg-secondary);
+    background-color: var(--chart-bar);
     border-radius: 4px 4px 0 0;
     position: relative;
 }
@@ -927,7 +957,36 @@ img {
     color: var(--bg-primary);
     padding: 2px 6px;
     border-radius: 4px;
+<<<<<<< HEAD
     font-size: 0.75rem;
+=======
+    font-size: 0.7rem;
+    white-space: nowrap;
+}
+.bar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), transparent);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.bar:hover::before {
+    opacity: 1;
+}
+.bar-chart-contrast .bar {
+    background: repeating-linear-gradient(
+        135deg,
+        var(--chart-contrast-accent) 0 6px,
+        var(--chart-contrast-base) 6px 12px
+    );
+    border: 1px solid var(--chart-contrast-accent);
+    box-shadow: 0 8px 14px rgba(250, 204, 21, 0.22);
+}
+.bar-chart-contrast .bar:hover {
+    background: linear-gradient(180deg, var(--chart-contrast-base), var(--chart-contrast-accent));
+>>>>>>> 1e352ed (update (port 8001))
 }
 
 /* Comparison Table */
