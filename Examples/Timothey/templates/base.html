@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TravelTracks{% endblock %} | Магазин треков путешествий</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Light theme - default */
+        html:not(.dark) body {
+            background-color: #f9fafb;
+            color: #1f2937;
+        }
+        
+        /* Dark theme */
+        html.dark body {
+            background-color: #111827;
+            color: #f9fafb;
+        }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        
+        .dark .glass-nav {
+            background: rgba(31, 41, 55, 0.95);
+            border: 1px solid rgba(55, 65, 81, 0.5);
+        }
+        
+        .dark .glass-nav a:not(.btn-gradient),
+        .dark .glass-nav span:not(.gradient-text) {
+            color: #e5e7eb;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(102, 126, 234, 0.5);
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .shape-1 {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.08);
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .shape-3 {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.12);
+            bottom: 20%;
+            left: 30%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .difficulty-easy { color: #10b981; }
+        .difficulty-medium { color: #f59e0b; }
+        .difficulty-hard { color: #ef4444; }
+        .difficulty-extreme { color: #7c3aed; }
+        
+
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .flash-message {
+            animation: slideIn 0.5s ease, fadeOut 0.5s ease 3s forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; visibility: hidden; }
+        }
+        
+        /* Dark mode overrides */
+        .dark .bg-white {
+            background-color: #1f2937 !important;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #111827 !important;
+        }
+        
+        .dark .bg-gray-100 {
+            background-color: #374151 !important;
+        }
+        
+        .dark .text-gray-700,
+        .dark .text-gray-800,
+        .dark .text-gray-900 {
+            color: #e5e7eb !important;
+        }
+        
+        .dark .text-gray-500,
+        .dark .text-gray-600 {
+            color: #9ca3af !important;
+        }
+        
+        .dark .text-gray-400 {
+            color: #6b7280 !important;
+        }
+        
+        .dark .border-gray-100,
+        .dark .border-gray-200,
+        .dark .border-gray-300 {
+            border-color: #374151 !important;
+        }
+        
+        .dark input,
+        .dark select,
+        .dark textarea {
+            background-color: #374151 !important;
+            border-color: #4b5563 !important;
+            color: #e5e7eb !important;
+        }
+        
+        .dark input::placeholder {
+            color: #9ca3af !important;
+        }
+        
+        .dark .bg-green-50 {
+            background-color: rgba(16, 185, 129, 0.15) !important;
+        }
+        
+        .dark .bg-purple-50 {
+            background-color: rgba(139, 92, 246, 0.15) !important;
+        }
+        
+        .dark .bg-blue-50 {
+            background-color: rgba(59, 130, 246, 0.15) !important;
+        }
+        
+        .dark .bg-red-50 {
+            background-color: rgba(239, 68, 68, 0.15) !important;
+        }
+        
+        .dark .bg-purple-100 {
+            background-color: rgba(139, 92, 246, 0.2) !important;
+        }
+        
+        .dark .bg-green-100 {
+            background-color: rgba(16, 185, 129, 0.2) !important;
+        }
+        
+        .dark .bg-red-100 {
+            background-color: rgba(239, 68, 68, 0.2) !important;
+        }
+        
+        /* Theme toggle button */
+        .theme-toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: #e5e7eb;
+            border-radius: 13px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .dark .theme-toggle {
+            background: #4b5563;
+        }
+        
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .dark .theme-toggle::after {
+            transform: translateX(24px);
+            background: #1f2937;
+        }
+        
+        .theme-toggle i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            transition: opacity 0.3s;
+        }
+        
+        .theme-toggle .fa-sun {
+            left: 6px;
+            color: #f59e0b;
+            opacity: 1;
+        }
+        
+        .theme-toggle .fa-moon {
+            right: 6px;
+            color: #6366f1;
+            opacity: 0.5;
+        }
+        
+        .dark .theme-toggle .fa-sun {
+            opacity: 0.5;
+        }
+        
+        .dark .theme-toggle .fa-moon {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <!-- Floating Navigation -->
+    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 glass-nav rounded-full px-8 py-4 shadow-lg w-11/12 max-w-6xl">
+        <div class="flex items-center justify-between">
+            <a href="{{ url_for('index') }}" class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-mountain text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold gradient-text">TravelTracks</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="{{ url_for('index') }}" class="nav-link text-gray-700 hover:text-purple-600 font-medium transition-colors">
+                    <i class="fas fa-home mr-2"></i>Главная
+                </a>
+                <a href="{{ url_for('catalog') }}" class="nav-link text-gray-700 hover:text-purple-600 font-medium transition-colors">
+                    <i class="fas fa-compass mr-2"></i>Каталог
+                </a>
+                <a href="{{ url_for('statistics') }}" class="nav-link text-gray-700 hover:text-purple-600 font-medium transition-colors">
+                    <i class="fas fa-chart-bar mr-2"></i>Статистика
+                </a>
+                {% if is_admin() %}
+                <a href="{{ url_for('admin') }}" class="nav-link text-red-500 hover:text-red-600 font-medium transition-colors">
+                    <i class="fas fa-shield-alt mr-2"></i>Админ
+                </a>
+                {% endif %}
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle -->
+                <div class="theme-toggle" onclick="toggleTheme()" title="Переключить тему">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </div>
+                
+                {% if session.get('user_id') %}
+                    <div class="flex items-center space-x-3">
+                        <a href="{{ url_for('profile') }}" class="flex items-center space-x-2 hover:opacity-80 transition-opacity" title="Личный кабинет">
+                            <div class="w-9 h-9 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white text-sm"></i>
+                            </div>
+                            <span class="hidden sm:block text-gray-700 font-medium">{{ session.get('user_name') }}</span>
+                        </a>
+                        <a href="{{ url_for('logout') }}" class="text-gray-500 hover:text-red-500 transition-colors" title="Выйти">
+                            <i class="fas fa-sign-out-alt text-lg"></i>
+                        </a>
+                    </div>
+                {% else %}
+                    <a href="{{ url_for('login') }}" class="text-gray-700 hover:text-purple-600 font-medium transition-colors">
+                        Вход
+                    </a>
+                    <a href="{{ url_for('register') }}" class="btn-gradient text-white px-5 py-2 rounded-full font-medium">
+                        Регистрация
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="fixed top-24 right-4 z-50 space-y-2">
+                {% for category, message in messages %}
+                    <div class="flash-message px-6 py-3 rounded-lg shadow-lg 
+                        {% if category == 'success' %}bg-green-500{% elif category == 'error' %}bg-red-500{% elif category == 'warning' %}bg-yellow-500{% else %}bg-blue-500{% endif %} 
+                        text-white font-medium">
+                        <i class="fas {% if category == 'success' %}fa-check-circle{% elif category == 'error' %}fa-exclamation-circle{% else %}fa-info-circle{% endif %} mr-2"></i>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 mt-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-mountain text-white text-xl"></i>
+                        </div>
+                        <span class="text-2xl font-bold">TravelTracks</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed mb-6">
+                        Откройте для себя лучшие треки путешествий со всего мира. 
+                        Мы собрали уникальные маршруты для любителей приключений.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Навигация</h4>
+                    <ul class="space-y-3">
+                        <li><a href="{{ url_for('index') }}" class="text-gray-400 hover:text-white transition-colors">Главная</a></li>
+                        <li><a href="{{ url_for('catalog') }}" class="text-gray-400 hover:text-white transition-colors">Каталог</a></li>
+                        <li><a href="{{ url_for('statistics') }}" class="text-gray-400 hover:text-white transition-colors">Статистика</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">О нас</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-6">Контакты</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-envelope mr-3 text-purple-500"></i>info@traveltracks.com</li>
+                        <li class="flex items-center"><i class="fas fa-phone mr-3 text-purple-500"></i>+7 (999) 123-45-67</li>
+                        <li class="flex items-center"><i class="fas fa-map-marker-alt mr-3 text-purple-500"></i>Москва, Россия</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2024 TravelTracks. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme management
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+        
+        // Check saved theme on load - default to light
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

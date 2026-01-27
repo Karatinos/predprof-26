@@ -1,0 +1,8 @@
+[
+  {
+    "id": 1,
+    "name": "Админ",
+    "email": "admin@travel.com",
+    "password": "admin123"
+  }
+]
