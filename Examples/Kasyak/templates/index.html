@@ -1,0 +1,307 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-gradient min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 py-20 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="text-white">
+                <div class="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 mb-6">
+                    <span class="w-2 h-2 bg-green-400 rounded-full mr-2 pulse-animation"></span>
+                    <span class="text-sm font-medium">Более 500+ уникальных маршрутов</span>
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight mb-6">
+                    Откройте мир<br>
+                    <span class="text-yellow-300">приключений</span>
+                </h1>
+                <p class="text-xl text-white/80 mb-8 leading-relaxed">
+                    Исследуйте уникальные треки путешествий со всего мира. 
+                    От горных вершин до тропических джунглей — ваше приключение начинается здесь.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="{{ url_for('catalog') }}" class="bg-white text-purple-700 px-8 py-4 rounded-full font-semibold hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl">
+                        <i class="fas fa-compass mr-2"></i>Смотреть каталог
+                    </a>
+                    <a href="#featured" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-700 transition-all">
+                        <i class="fas fa-play mr-2"></i>Узнать больше
+                    </a>
+                </div>
+                
+                <!-- Stats -->
+                <div class="flex gap-8 mt-12">
+                    <div>
+                        <div class="text-4xl font-bold">500+</div>
+                        <div class="text-white/70">Маршрутов</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold">50+</div>
+                        <div class="text-white/70">Стран</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold">10K+</div>
+                        <div class="text-white/70">Клиентов</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="relative hidden lg:block">
+                <div class="absolute -top-10 -left-10 w-72 h-72 bg-yellow-400/30 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-10 -right-10 w-72 h-72 bg-pink-400/30 rounded-full blur-3xl"></div>
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80" 
+                     alt="Adventure" 
+                     class="relative z-10 rounded-3xl shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&q=80" 
+                     alt="Mountains" 
+                     class="absolute -bottom-10 -left-10 w-48 rounded-2xl shadow-xl transform -rotate-6 hover:rotate-0 transition-transform duration-500 z-20">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+        <i class="fas fa-chevron-down text-2xl"></i>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <span class="text-purple-600 font-semibold text-sm uppercase tracking-wider">Категории</span>
+            <h2 class="text-4xl font-bold mt-2 gradient-text">Выберите свой тип приключения</h2>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <a href="{{ url_for('catalog', category='Горы') }}" class="group relative h-48 rounded-2xl overflow-hidden shadow-lg card-hover">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" 
+                     alt="Горы" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 text-white">
+                    <i class="fas fa-mountain text-2xl mb-2"></i>
+                    <h3 class="text-xl font-bold">Горы</h3>
+                </div>
+            </a>
+            
+            <a href="{{ url_for('catalog', category='История') }}" class="group relative h-48 rounded-2xl overflow-hidden shadow-lg card-hover">
+                <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=400&q=80" 
+                     alt="История" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 text-white">
+                    <i class="fas fa-landmark text-2xl mb-2"></i>
+                    <h3 class="text-xl font-bold">История</h3>
+                </div>
+            </a>
+            
+            <a href="{{ url_for('catalog', category='Джунгли') }}" class="group relative h-48 rounded-2xl overflow-hidden shadow-lg card-hover">
+                <img src="https://images.unsplash.com/photo-1440342359743-84fcb8c21f21?w=400&q=80" 
+                     alt="Джунгли" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 text-white">
+                    <i class="fas fa-tree text-2xl mb-2"></i>
+                    <h3 class="text-xl font-bold">Джунгли</h3>
+                </div>
+            </a>
+            
+            <a href="{{ url_for('catalog', category='Сафари') }}" class="group relative h-48 rounded-2xl overflow-hidden shadow-lg card-hover">
+                <img src="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=400&q=80" 
+                     alt="Сафари" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                <div class="absolute bottom-4 left-4 text-white">
+                    <i class="fas fa-paw text-2xl mb-2"></i>
+                    <h3 class="text-xl font-bold">Сафари</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Tracks -->
+<section id="featured" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <span class="text-purple-600 font-semibold text-sm uppercase tracking-wider">Популярные</span>
+                <h2 class="text-4xl font-bold mt-2 text-gray-800">Лучшие треки</h2>
+            </div>
+            <a href="{{ url_for('catalog') }}" class="text-purple-600 font-semibold hover:text-purple-800 transition-colors">
+                Смотреть все <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for track in tracks %}
+            <article class="bg-white rounded-3xl overflow-hidden shadow-lg card-hover">
+                <div class="relative h-56">
+                    <img src="{{ track.image }}" alt="{{ track.name }}" 
+                         class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 backdrop-blur-sm text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
+                            {{ track.category }}
+                        </span>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold flex items-center">
+                            <i class="fas fa-star mr-1"></i>{{ track.rating }}
+                        </span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center text-gray-500 text-sm mb-3">
+                        <i class="fas fa-map-marker-alt mr-2 text-purple-500"></i>
+                        <span>{{ track.country }}</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800 hover:text-purple-600 transition-colors">
+                        <a href="{{ url_for('track_detail', track_id=track.id) }}">{{ track.name }}</a>
+                    </h3>
+                    <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ track.description[:100] }}...</p>
+                    
+                    <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                        <span><i class="fas fa-clock mr-1"></i>{{ track.duration }}</span>
+                        <span><i class="fas fa-route mr-1"></i>{{ track.distance }}</span>
+                        <span class="{% if track.difficulty == 'Лёгкий' %}difficulty-easy{% elif track.difficulty == 'Средний' %}difficulty-medium{% elif track.difficulty == 'Сложный' %}difficulty-hard{% else %}difficulty-extreme{% endif %}">
+                            <i class="fas fa-signal mr-1"></i>{{ track.difficulty }}
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div class="text-2xl font-bold gradient-text">{{ track.price }} ₽</div>
+                        <a href="{{ url_for('track_detail', track_id=track.id) }}" 
+                           class="btn-gradient text-white px-5 py-2 rounded-full font-medium text-sm">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <span class="text-purple-600 font-semibold text-sm uppercase tracking-wider">Преимущества</span>
+            <h2 class="text-4xl font-bold mt-2 text-gray-800">Почему выбирают нас</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center p-8 rounded-3xl bg-gradient-to-br from-purple-50 to-indigo-50 card-hover">
+                <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3">
+                    <i class="fas fa-map-marked-alt text-white text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Проверенные маршруты</h3>
+                <p class="text-gray-600">Каждый трек тестируется нашими экспертами для вашей безопасности и комфорта</p>
+            </div>
+            
+            <div class="text-center p-8 rounded-3xl bg-gradient-to-br from-pink-50 to-rose-50 card-hover">
+                <div class="w-20 h-20 bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-6 transform -rotate-3">
+                    <i class="fas fa-headset text-white text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Поддержка 24/7</h3>
+                <p class="text-gray-600">Наша команда всегда готова помочь вам на любом этапе путешествия</p>
+            </div>
+            
+            <div class="text-center p-8 rounded-3xl bg-gradient-to-br from-amber-50 to-yellow-50 card-hover">
+                <div class="w-20 h-20 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3">
+                    <i class="fas fa-shield-alt text-white text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Гарантия качества</h3>
+                <p class="text-gray-600">Возврат средств, если маршрут не соответствует описанию</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <span class="text-purple-600 font-semibold text-sm uppercase tracking-wider">Отзывы</span>
+            <h2 class="text-4xl font-bold mt-2 text-gray-800">Что говорят путешественники</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-lg card-hover">
+                <div class="flex items-center mb-4">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" 
+                         alt="User" class="w-14 h-14 rounded-full object-cover mr-4">
+                    <div>
+                        <div class="font-bold text-gray-800">Алексей Петров</div>
+                        <div class="text-gray-500 text-sm">Москва</div>
+                    </div>
+                </div>
+                <div class="flex text-yellow-400 mb-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="text-gray-600">"Невероятный опыт! Альпийский маршрут превзошёл все мои ожидания. Детальные карты и GPS-координаты очень помогли."</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-3xl shadow-lg card-hover">
+                <div class="flex items-center mb-4">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" 
+                         alt="User" class="w-14 h-14 rounded-full object-cover mr-4">
+                    <div>
+                        <div class="font-bold text-gray-800">Мария Иванова</div>
+                        <div class="text-gray-500 text-sm">Санкт-Петербург</div>
+                    </div>
+                </div>
+                <div class="flex text-yellow-400 mb-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="text-gray-600">"Сафари в Серенгети — лучшее путешествие в моей жизни! Спасибо за отличную организацию и поддержку на маршруте."</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-3xl shadow-lg card-hover">
+                <div class="flex items-center mb-4">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" 
+                         alt="User" class="w-14 h-14 rounded-full object-cover mr-4">
+                    <div>
+                        <div class="font-bold text-gray-800">Дмитрий Козлов</div>
+                        <div class="text-gray-500 text-sm">Екатеринбург</div>
+                    </div>
+                </div>
+                <div class="flex text-yellow-400 mb-4">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text-gray-600">"Гималайский трек — мечта сбылась! Отличный путеводитель с рекомендациями по жилью и питанию. Рекомендую!"</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 hero-gradient relative overflow-hidden">
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Готовы к приключению?</h2>
+        <p class="text-xl text-white/80 mb-8">Присоединяйтесь к тысячам путешественников, которые уже открыли для себя новые горизонты</p>
+        <a href="{{ url_for('register') }}" class="inline-block bg-white text-purple-700 px-10 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl">
+            Начать бесплатно
+        </a>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+<section class="min-h-screen pt-24 pb-16 flex items-center hero-gradient relative overflow-hidden">
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    
+    <div class="max-w-md mx-auto px-4 relative z-10 w-full">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-10">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-user-plus text-white text-2xl"></i>
+                </div>
+                <h1 class="text-3xl font-bold gradient-text">Создать аккаунт</h1>
+                <p class="text-gray-500 dark:text-gray-400 mt-2">Присоединяйтесь к сообществу путешественников</p>
+            </div>
+            
+            <form method="POST" action="{{ url_for('register') }}" class="space-y-5">
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Имя</label>
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" name="name" required
+                               class="w-full pl-12 pr-4 py-4 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                               placeholder="Ваше имя">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label>
+                    <div class="relative">
+                        <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="email" name="email" required
+                               class="w-full pl-12 pr-4 py-4 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                               placeholder="your@email.com">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Пароль</label>
+                    <div class="relative">
+                        <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="password" name="password" required minlength="6"
+                               class="w-full pl-12 pr-4 py-4 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                               placeholder="Минимум 6 символов">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Подтвердите пароль</label>
+                    <div class="relative">
+                        <i class="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="password" name="confirm_password" required
+                               class="w-full pl-12 pr-4 py-4 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                               placeholder="Повторите пароль">
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <input type="checkbox" required class="w-4 h-4 mt-1 text-purple-600 border-gray-300 rounded focus:ring-purple-500">
+                    <span class="ml-3 text-gray-600 dark:text-gray-400 text-sm">
+                        Я согласен с <a href="#" class="text-purple-600 hover:text-purple-800">условиями использования</a> 
+                        и <a href="#" class="text-purple-600 hover:text-purple-800">политикой конфиденциальности</a>
+                    </span>
+                </div>
+                
+                <button type="submit" class="w-full btn-gradient text-white py-4 rounded-xl font-bold text-lg">
+                    <i class="fas fa-rocket mr-2"></i>Зарегистрироваться
+                </button>
+            </form>
+            
+            <div class="mt-8">
+                <div class="relative">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-gray-200 dark:border-gray-600"></div>
+                    </div>
+                    <div class="relative flex justify-center text-sm">
+                        <span class="px-4 bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400">или зарегистрируйтесь через</span>
+                    </div>
+                </div>
+                
+                <div class="mt-6 grid grid-cols-3 gap-3">
+                    <button class="flex items-center justify-center py-3 border border-gray-200 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-google text-red-500 text-xl"></i>
+                    </button>
+                    <button class="flex items-center justify-center py-3 border border-gray-200 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-facebook-f text-blue-600 text-xl"></i>
+                    </button>
+                    <button class="flex items-center justify-center py-3 border border-gray-200 dark:border-gray-600 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                        <i class="fab fa-apple text-gray-800 dark:text-white text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <p class="text-center mt-8 text-gray-600 dark:text-gray-400">
+                Уже есть аккаунт? 
+                <a href="{{ url_for('login') }}" class="text-purple-600 font-semibold hover:text-purple-800">Войти</a>
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

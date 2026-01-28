@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}Каталог{% endblock %}
+
+{% block content %}
+<section class="pt-32 pb-20 bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold gradient-text mb-4">Каталог треков</h1>
+            <p class="text-xl text-gray-600 dark:text-gray-400">Найдите идеальный маршрут для вашего следующего приключения</p>
+        </div>
+        
+        <!-- Filters -->
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 mb-12">
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a href="{{ url_for('catalog', category='all') }}" 
+                   class="px-6 py-3 rounded-full font-medium transition-all
+                   {% if category == 'all' %}btn-gradient text-white{% else %}bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600{% endif %}">
+                    <i class="fas fa-globe mr-2"></i>Все треки
+                </a>
+                <a href="{{ url_for('catalog', category='Горы') }}" 
+                   class="px-6 py-3 rounded-full font-medium transition-all
+                   {% if category == 'Горы' %}btn-gradient text-white{% else %}bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600{% endif %}">
+                    <i class="fas fa-mountain mr-2"></i>Горы
+                </a>
+                <a href="{{ url_for('catalog', category='История') }}" 
+                   class="px-6 py-3 rounded-full font-medium transition-all
+                   {% if category == 'История' %}btn-gradient text-white{% else %}bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600{% endif %}">
+                    <i class="fas fa-landmark mr-2"></i>История
+                </a>
+                <a href="{{ url_for('catalog', category='Джунгли') }}" 
+                   class="px-6 py-3 rounded-full font-medium transition-all
+                   {% if category == 'Джунгли' %}btn-gradient text-white{% else %}bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600{% endif %}">
+                    <i class="fas fa-tree mr-2"></i>Джунгли
+                </a>
+                <a href="{{ url_for('catalog', category='Сафари') }}" 
+                   class="px-6 py-3 rounded-full font-medium transition-all
+                   {% if category == 'Сафари' %}btn-gradient text-white{% else %}bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600{% endif %}">
+                    <i class="fas fa-paw mr-2"></i>Сафари
+                </a>
+                <a href="{{ url_for('catalog', category='Пешие') }}" 
+                   class="px-6 py-3 rounded-full font-medium transition-all
+                   {% if category == 'Пешие' %}btn-gradient text-white{% else %}bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600{% endif %}">
+                    <i class="fas fa-hiking mr-2"></i>Пешие
+                </a>
+            </div>
+        </div>
+        
+        <!-- Results Count -->
+        <div class="flex justify-between items-center mb-8">
+            <p class="text-gray-600 dark:text-gray-400">
+                Найдено <span class="font-bold text-purple-600">{{ tracks|length }}</span> треков
+            </p>
+            <div class="flex items-center gap-2">
+                <span class="text-gray-500 dark:text-gray-400 text-sm">Сортировка:</span>
+                <select class="border-0 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-purple-500">
+                    <option>По популярности</option>
+                    <option>По цене ↑</option>
+                    <option>По цене ↓</option>
+                    <option>По рейтингу</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Tracks Grid -->
+        {% if tracks %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {% for track in tracks %}
+            <article class="bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg card-hover group">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="{{ track.image }}" alt="{{ track.name }}" 
+                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div class="absolute top-4 left-4">
+                        <span class="bg-white/90 backdrop-blur-sm text-purple-600 px-3 py-1 rounded-full text-xs font-semibold">
+                            {{ track.category }}
+                        </span>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-yellow-400 text-gray-900 px-2 py-1 rounded-full text-xs font-bold flex items-center">
+                            <i class="fas fa-star mr-1"></i>{{ track.rating }}
+                        </span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4">
+                        <h3 class="text-white text-lg font-bold truncate">{{ track.name }}</h3>
+                        <div class="flex items-center text-white/80 text-sm">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>{{ track.country }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-5">
+                    <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mb-4">
+                        <span><i class="fas fa-clock mr-1"></i>{{ track.duration }}</span>
+                        <span><i class="fas fa-route mr-1"></i>{{ track.distance }}</span>
+                        <span class="{% if track.difficulty == 'Лёгкий' %}difficulty-easy{% elif track.difficulty == 'Средний' %}difficulty-medium{% elif track.difficulty == 'Сложный' %}difficulty-hard{% else %}difficulty-extreme{% endif %}">
+                            {{ track.difficulty }}
+                        </span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400">от</span>
+                            <span class="text-xl font-bold gradient-text">{{ track.price }} ₽</span>
+                        </div>
+                        <a href="{{ url_for('track_detail', track_id=track.id) }}" 
+                           class="btn-gradient text-white px-4 py-2 rounded-full text-sm font-medium">
+                            Подробнее
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-20">
+            <div class="w-24 h-24 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-search text-4xl text-gray-400"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-700 dark:text-gray-300 mb-2">Треки не найдены</h3>
+            <p class="text-gray-500 dark:text-gray-400 mb-6">Попробуйте изменить параметры фильтра</p>
+            <a href="{{ url_for('catalog', category='all') }}" class="btn-gradient text-white px-6 py-3 rounded-full font-medium">
+                Показать все треки
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

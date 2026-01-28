@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Страница не найдена{% endblock %}
+
+{% block content %}
+<section class="min-h-screen flex items-center justify-center hero-gradient relative overflow-hidden">
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    
+    <div class="text-center relative z-10 px-4">
+        <!-- Animated 404 -->
+        <div class="relative mb-8">
+            <h1 class="text-[200px] md:text-[250px] font-extrabold text-white/20 leading-none select-none">
+                404
+            </h1>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <div class="w-32 h-32 md:w-40 md:h-40 bg-white rounded-full flex items-center justify-center shadow-2xl">
+                    <i class="fas fa-compass text-6xl md:text-7xl text-purple-600 animate-spin" style="animation-duration: 3s;"></i>
+                </div>
+            </div>
+        </div>
+        
+        <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">
+            Упс! Вы заблудились
+        </h2>
+        <p class="text-xl text-white/80 mb-8 max-w-md mx-auto">
+            Похоже, этот маршрут не существует. Но не переживайте — у нас есть множество других приключений!
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="{{ url_for('index') }}" 
+               class="bg-white text-purple-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-yellow-300 transition-all transform hover:scale-105 shadow-xl flex items-center">
+                <i class="fas fa-home mr-2"></i>
+                На главную
+            </a>
+            <a href="{{ url_for('catalog') }}" 
+               class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-purple-700 transition-all flex items-center">
+                <i class="fas fa-compass mr-2"></i>
+                Смотреть каталог
+            </a>
+        </div>
+        
+        <!-- Fun facts -->
+        <div class="mt-16 bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-lg mx-auto">
+            <p class="text-white/90 text-sm">
+                <i class="fas fa-lightbulb text-yellow-300 mr-2"></i>
+                <strong>Интересный факт:</strong> Самый длинный пешеходный маршрут в мире — 
+                Trans-Canada Trail, его длина составляет более 24 000 км!
+            </p>
+        </div>
+    </div>
+    
+    <!-- Decorative elements -->
+    <div class="absolute bottom-10 left-10 opacity-30">
+        <i class="fas fa-map-marked-alt text-white text-6xl"></i>
+    </div>
+    <div class="absolute top-20 right-10 opacity-30">
+        <i class="fas fa-mountain text-white text-8xl"></i>
+    </div>
+</section>
+{% endblock %}
