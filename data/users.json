@@ -4,5 +4,12 @@
     "name": "Админ",
     "email": "admin@travel.com",
     "password": "admin123"
+  },
+  {
+    "id": 2,
+    "name": "danila.kosyak",
+    "email": "danila.kosyak@gmail.com",
+    "password": "",
+    "verified": false
   }
 ]

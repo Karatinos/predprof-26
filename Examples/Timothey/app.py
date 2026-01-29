@@ -1,10 +1,25 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify, flash
 import json
 import os
+import random
+import string
+from datetime import datetime, timedelta
 from functools import wraps
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
 app.secret_key = 'travel_tracks_secret_key_2024'
+
+# Настройки почты
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER', 'your_email@gmail.com')
+app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS', 'your_app_password')
+app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('EMAIL_USER', 'your_email@gmail.com')
+
+mail = Mail(app)
 
 # Установка темной темы по умолчанию
 DEFAULT_THEME = 'dark'
@@ -15,6 +30,62 @@ DB_TRACKS = 'data/tracks.json'
 DB_PURCHASES = 'data/purchases.json'
 
 ADMIN_EMAIL = 'admin@travel.com'
+
+# Хранилище кодов верификации (в реальном проекте используйте Redis или другую БД)
+verification_codes = {}
+
+def generate_code(length=6):
+    """Генерация случайного кода"""
+    return ''.join(random.choices(string.digits, k=length))
+
+def send_verification_email(to_email, subject, code, template_type='verify'):
+    """
+    Универсальная функция отправки email
+    template_type: 'verify' - верификация, 'login' - вход, 'register' - регистрация
+    """
+    templates = {
+        'register': {
+            'title': 'Подтверждение регистрации',
+            'message': 'Для завершения регистрации введите код:'
+        },
+        'login': {
+            'title': 'Код для входа',
+            'message': 'Для входа в аккаунт введите код:'
+        },
+        'verify': {
+            'title': 'Код подтверждения',
+            'message': 'Ваш код подтверждения:'
+        }
+    }
+
+    t = templates.get(template_type, templates['verify'])
+
+    html_content = f'''
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; border-radius: 15px 15px 0 0;">
+            <h1 style="color: white; margin: 0; text-align: center;">🎯 Travel Tracks</h1>
+        </div>
+        <div style="background: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-top: none;">
+            <h2 style="color: #1f2937; margin-top: 0;">{t['title']}</h2>
+            <p style="color: #6b7280;">{t['message']}</p>
+            <div style="background: #f3f4f6; padding: 25px; text-align: center; border-radius: 12px; margin: 20px 0;">
+                <span style="font-size: 36px; font-weight: bold; letter-spacing: 8px; color: #667eea;">{code}</span>
+            </div>
+            <p style="color: #9ca3af; font-size: 14px;">Код действителен 10 минут.</p>
+            <p style="color: #9ca3af; font-size: 14px;">Если вы не запрашивали этот код, проигнорируйте письмо.</p>
+        </div>
+        <div style="background: #f9fafb; padding: 20px; border-radius: 0 0 15px 15px; text-align: center; border: 1px solid #e5e7eb; border-top: none;">
+            <p style="color: #9ca3af; margin: 0; font-size: 12px;">© 2024 Travel Tracks. Все права защищены.</p>
+        </div>
+    </div>
+    '''
+
+    try:
+        msg = Message(subject=subject, recipients=[to_email], html=html_content)
+        mail.send(msg)
+        return True, None
+    except Exception as e:
+        return False, str(e)
 
 def load_json(filepath):
     if os.path.exists(filepath):
@@ -79,16 +150,91 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+
         users = load_json(DB_USERS)
-        user = next((u for u in users if u['email'] == email and u['password'] == password), None)
-        if user:
-            session['user_id'] = user['id']
-            session['user_name'] = user['name']
-            session['user_email'] = user['email']
-            flash('Добро пожаловать!', 'success')
-            return redirect(url_for('index'))
-        flash('Неверный email или пароль', 'error')
+        user = next((u for u in users if u['email'] == email), None)
+
+        if not user:
+            flash('Неверный email или пароль', 'error')
+            return render_template('login.html')
+
+        if user['password'] != password:
+            flash('Неверный email или пароль', 'error')
+            return render_template('login.html')
+
+        if not user.get('verified', True):  # Если не подтвержден, требуем подтверждение
+            flash('Пожалуйста, подтвердите ваш email', 'error')
+            return render_template('login.html')
+
+        # Отправляем код для двухфакторной аутентификации
+        code = generate_code()
+        verification_codes[email] = {
+            'code': code,
+            'expiry': datetime.now() + timedelta(minutes=10),
+            'type': 'login'
+        }
+
+        success, error = send_verification_email(
+            email,
+            'Код для входа - Travel Tracks',
+            code,
+            'login'
+        )
+
+        if success:
+            session['pending_email'] = email
+            session['verify_type'] = 'login'
+            flash('Код подтверждения отправлен на вашу почту', 'success')
+            return redirect(url_for('verify'))
+        else:
+            flash(f'Ошибка отправки кода: {error}', 'error')
+            return render_template('login.html')
+
     return render_template('login.html')
+
+@app.route('/login_with_code', methods=['POST'])
+def login_with_code():
+    email = request.form.get('email')
+
+    users = load_json(DB_USERS)
+    user = next((u for u in users if u['email'] == email), None)
+
+    # Если пользователя не существует, создаем нового
+    if not user:
+        new_user = {
+            'id': len(users) + 1,
+            'name': email.split('@')[0],  # Используем часть email до @ как имя
+            'email': email,
+            'password': '',  # Пароль не нужен при входе по коду
+            'verified': False
+        }
+        users.append(new_user)
+        save_json(DB_USERS, users)
+        user = new_user
+
+    # Отправляем код для входа
+    code = generate_code()
+    verification_codes[email] = {
+        'code': code,
+        'expiry': datetime.now() + timedelta(minutes=10),
+        'type': 'login'
+    }
+
+    success, error = send_verification_email(
+        email,
+        'Код для входа - Travel Tracks',
+        code,
+        'login'
+    )
+
+    if success:
+        session['pending_email'] = email
+        session['verify_type'] = 'login'
+        flash('Код подтверждения отправлен на вашу почту', 'success')
+        return redirect(url_for('verify'))
+    else:
+        flash(f'Ошибка отправки кода: {error}', 'error')
+        return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -96,21 +242,138 @@ def register():
         name = request.form.get('name')
         email = request.form.get('email')
         password = request.form.get('password')
+
         users = load_json(DB_USERS)
-        if any(u['email'] == email for u in users):
-            flash('Email уже зарегистрирован', 'error')
-            return render_template('register.html')
-        new_user = {
-            'id': len(users) + 1,
-            'name': name,
-            'email': email,
-            'password': password
+        existing_user = next((u for u in users if u['email'] == email), None)
+
+        if existing_user:
+            if existing_user.get('verified', False):
+                flash('Email уже зарегистрирован', 'error')
+                return render_template('register.html')
+            else:
+                # Если пользователь существует но не подтвержден, обновляем его данные
+                existing_user['name'] = name
+                existing_user['password'] = password
+        else:
+            # Новый пользователь
+            new_user = {
+                'id': len(users) + 1,
+                'name': name,
+                'email': email,
+                'password': password,
+                'verified': False
+            }
+            users.append(new_user)
+
+        # Генерируем и сохраняем код верификации
+        code = generate_code()
+        verification_codes[email] = {
+            'code': code,
+            'expiry': datetime.now() + timedelta(minutes=10),
+            'type': 'register'
         }
-        users.append(new_user)
-        save_json(DB_USERS, users)
-        flash('Регистрация успешна! Войдите в систему', 'success')
-        return redirect(url_for('login'))
+
+        # Отправляем код подтверждения
+        success, error = send_verification_email(
+            email,
+            'Подтверждение регистрации - Travel Tracks',
+            code,
+            'register'
+        )
+
+        if success:
+            session['pending_email'] = email
+            session['verify_type'] = 'register'
+            flash('Код подтверждения отправлен на вашу почту', 'success')
+            return redirect(url_for('verify'))
+        else:
+            flash(f'Ошибка отправки кода: {error}', 'error')
+            return render_template('register.html')
+
     return render_template('register.html')
+
+@app.route('/verify', methods=['GET', 'POST'])
+def verify():
+    if 'pending_email' not in session:
+        return redirect(url_for('index'))
+
+    email = session['pending_email']
+    verify_type = session.get('verify_type', 'register')
+
+    if request.method == 'POST':
+        code = request.form.get('code')
+        stored = verification_codes.get(email)
+
+        if not stored:
+            flash('Код не найден. Попробуйте снова.', 'error')
+            return redirect(url_for('login') if verify_type == 'login' else url_for('register'))
+
+        if datetime.now() > stored['expiry']:
+            flash('Код истёк. Запросите новый.', 'error')
+            return redirect(url_for('verify'))
+
+        if code != stored['code']:
+            flash('Неверный код', 'error')
+            return redirect(url_for('verify'))
+
+        # Успешная верификация
+        del verification_codes[email]
+
+        if verify_type == 'login':
+            # Авторизуем пользователя
+            users = load_json(DB_USERS)
+            user = next((u for u in users if u['email'] == email), None)
+            if user:
+                # Помечаем пользователя как подтвержденного при первом входе по коду
+                if not user.get('verified', False):
+                    user['verified'] = True
+                    save_json(DB_USERS, users)
+
+                session['user_id'] = user['id']
+                session['user_name'] = user['name']
+                session['user_email'] = user['email']
+                del session['pending_email']
+                del session['verify_type']
+                flash(f'Добро пожаловать, {user["name"]}!', 'success')
+                return redirect(url_for('index'))
+        else:
+            # Подтверждаем регистрацию
+            users = load_json(DB_USERS)
+            user = next((u for u in users if u['email'] == email), None)
+            if user:
+                user['verified'] = True
+                save_json(DB_USERS, users)
+                del session['pending_email']
+                del session['verify_type']
+                flash('Регистрация завершена! Теперь войдите.', 'success')
+                return redirect(url_for('login'))
+
+    return render_template('verify.html', email=email, verify_type=verify_type)
+
+@app.route('/resend')
+def resend():
+    email = session.get('pending_email')
+    verify_type = session.get('verify_type', 'register')
+
+    if not email:
+        return redirect(url_for('index'))
+
+    code = generate_code()
+    verification_codes[email] = {
+        'code': code,
+        'expiry': datetime.now() + timedelta(minutes=10),
+        'type': verify_type
+    }
+
+    subject = 'Код для входа - Travel Tracks' if verify_type == 'login' else 'Код подтверждения - Travel Tracks'
+    success, error = send_verification_email(email, subject, code, verify_type)
+
+    if success:
+        flash('Новый код отправлен', 'success')
+    else:
+        flash(f'Ошибка: {error}', 'error')
+
+    return redirect(url_for('verify'))
 
 @app.route('/logout')
 def logout():
@@ -317,7 +580,7 @@ if __name__ == '__main__':
         save_json(DB_TRACKS, initial_tracks)
     
     if not os.path.exists(DB_USERS):
-        save_json(DB_USERS, [{"id": 1, "name": "Админ", "email": "admin@travel.com", "password": "admin123"}])
+        save_json(DB_USERS, [{"id": 1, "name": "Админ", "email": "admin@travel.com", "password": "admin123", "verified": True}])
     
     if not os.path.exists(DB_PURCHASES):
         save_json(DB_PURCHASES, [])
