@@ -6,6 +6,9 @@ from functools import wraps
 app = Flask(__name__)
 app.secret_key = 'travel_tracks_secret_key_2024'
 
+# Установка темной темы по умолчанию
+DEFAULT_THEME = 'dark'
+
 # Путь к файлам базы данных
 DB_USERS = 'data/users.json'
 DB_TRACKS = 'data/tracks.json'
@@ -65,7 +68,11 @@ def track_detail(track_id):
     track = next((t for t in tracks if t['id'] == track_id), None)
     if not track:
         return render_template('404.html'), 404
-    return render_template('track_detail.html', track=track)
+
+    # Получаем похожие треки (по категории, за исключением текущего трека)
+    related_tracks = [t for t in tracks if t['category'] == track['category'] and t['id'] != track_id][:3]
+
+    return render_template('track_detail.html', track=track, related_tracks=related_tracks)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

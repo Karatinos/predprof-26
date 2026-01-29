@@ -138,48 +138,49 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {% for track in tracks %}
-            <article class="bg-white rounded-3xl overflow-hidden shadow-lg card-hover">
-                <div class="relative h-56">
-                    <img src="{{ track.image }}" alt="{{ track.name }}" 
-                         class="w-full h-full object-cover">
-                    <div class="absolute top-4 left-4">
-                        <span class="bg-white/90 backdrop-blur-sm text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
-                            {{ track.category }}
-                        </span>
+            <a href="{{ url_for('track_detail', track_id=track.id) }}">
+                <article class="bg-white rounded-3xl overflow-hidden shadow-lg card-hover">
+                    <div class="relative h-56">
+                        <img src="{{ track.image }}" alt="{{ track.name }}"
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-white/90 backdrop-blur-sm text-purple-600 px-3 py-1 rounded-full text-sm font-semibold">
+                                {{ track.category }}
+                            </span>
+                        </div>
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold flex items-center">
+                                <i class="fas fa-star mr-1"></i>{{ track.rating }}
+                            </span>
+                        </div>
                     </div>
-                    <div class="absolute top-4 right-4">
-                        <span class="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold flex items-center">
-                            <i class="fas fa-star mr-1"></i>{{ track.rating }}
-                        </span>
+                    <div class="p-6">
+                        <div class="flex items-center text-gray-500 text-sm mb-3">
+                            <i class="fas fa-map-marker-alt mr-2 text-purple-500"></i>
+                            <span>{{ track.country }}</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-gray-800 hover:text-purple-600 transition-colors">
+                            {{ track.name }}
+                        </h3>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ track.description[:100] }}...</p>
+
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span><i class="fas fa-clock mr-1"></i>{{ track.duration }}</span>
+                            <span><i class="fas fa-route mr-1"></i>{{ track.distance }}</span>
+                            <span class="{% if track.difficulty == 'Лёгкий' %}difficulty-easy{% elif track.difficulty == 'Средний' %}difficulty-medium{% elif track.difficulty == 'Сложный' %}difficulty-hard{% else %}difficulty-extreme{% endif %}">
+                                <i class="fas fa-signal mr-1"></i>{{ track.difficulty }}
+                            </span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <div class="text-2xl font-bold gradient-text">{{ track.price }} ₽</div>
+                            <button class="btn-gradient text-white px-5 py-2 rounded-full font-medium text-sm pointer-events-none">
+                                Подробнее
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="p-6">
-                    <div class="flex items-center text-gray-500 text-sm mb-3">
-                        <i class="fas fa-map-marker-alt mr-2 text-purple-500"></i>
-                        <span>{{ track.country }}</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-gray-800 hover:text-purple-600 transition-colors">
-                        <a href="{{ url_for('track_detail', track_id=track.id) }}">{{ track.name }}</a>
-                    </h3>
-                    <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ track.description[:100] }}...</p>
-                    
-                    <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
-                        <span><i class="fas fa-clock mr-1"></i>{{ track.duration }}</span>
-                        <span><i class="fas fa-route mr-1"></i>{{ track.distance }}</span>
-                        <span class="{% if track.difficulty == 'Лёгкий' %}difficulty-easy{% elif track.difficulty == 'Средний' %}difficulty-medium{% elif track.difficulty == 'Сложный' %}difficulty-hard{% else %}difficulty-extreme{% endif %}">
-                            <i class="fas fa-signal mr-1"></i>{{ track.difficulty }}
-                        </span>
-                    </div>
-                    
-                    <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <div class="text-2xl font-bold gradient-text">{{ track.price }} ₽</div>
-                        <a href="{{ url_for('track_detail', track_id=track.id) }}" 
-                           class="btn-gradient text-white px-5 py-2 rounded-full font-medium text-sm">
-                            Подробнее
-                        </a>
-                    </div>
-                </div>
-            </article>
+                </article>
+            </a>
             {% endfor %}
         </div>
     </div>
@@ -194,28 +195,28 @@
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="text-center p-8 rounded-3xl bg-gradient-to-br from-purple-50 to-indigo-50 card-hover">
+            <div class="text-center p-8 rounded-3xl bg-gradient-to-br from-purple-50 to-indigo-50 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800 card-hover">
                 <div class="w-20 h-20 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3">
                     <i class="fas fa-map-marked-alt text-white text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-4 text-gray-800">Проверенные маршруты</h3>
-                <p class="text-gray-600">Каждый трек тестируется нашими экспертами для вашей безопасности и комфорта</p>
+                <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Проверенные маршруты</h3>
+                <p class="text-gray-800 dark:text-gray-200">Каждый трек тестируется нашими экспертами для вашей безопасности и комфорта</p>
             </div>
-            
-            <div class="text-center p-8 rounded-3xl bg-gradient-to-br from-pink-50 to-rose-50 card-hover">
+
+            <div class="text-center p-8 rounded-3xl bg-gradient-to-br from-pink-50 to-rose-50 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800 card-hover">
                 <div class="w-20 h-20 bg-gradient-to-r from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-6 transform -rotate-3">
                     <i class="fas fa-headset text-white text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-4 text-gray-800">Поддержка 24/7</h3>
-                <p class="text-gray-600">Наша команда всегда готова помочь вам на любом этапе путешествия</p>
+                <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Поддержка 24/7</h3>
+                <p class="text-gray-800 dark:text-gray-200">Наша команда всегда готова помочь вам на любом этапе путешествия</p>
             </div>
-            
-            <div class="text-center p-8 rounded-3xl bg-gradient-to-br from-amber-50 to-yellow-50 card-hover">
+
+            <div class="text-center p-8 rounded-3xl bg-gradient-to-br from-amber-50 to-yellow-50 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800 card-hover">
                 <div class="w-20 h-20 bg-gradient-to-r from-amber-500 to-yellow-500 rounded-2xl flex items-center justify-center mx-auto mb-6 transform rotate-3">
                     <i class="fas fa-shield-alt text-white text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-bold mb-4 text-gray-800">Гарантия качества</h3>
-                <p class="text-gray-600">Возврат средств, если маршрут не соответствует описанию</p>
+                <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Гарантия качества</h3>
+                <p class="text-gray-800 dark:text-gray-200">Возврат средств, если маршрут не соответствует описанию</p>
             </div>
         </div>
     </div>

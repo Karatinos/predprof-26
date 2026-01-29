@@ -13,32 +13,21 @@
             font-family: 'Montserrat', sans-serif;
         }
         
-        /* Light theme - default */
-        html:not(.dark) body {
-            background-color: #f9fafb;
-            color: #1f2937;
-        }
-        
-        /* Dark theme */
-        html.dark body {
+        /* Dark theme only */
+        body {
             background-color: #111827;
             color: #f9fafb;
         }
         
         .glass-nav {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(31, 41, 55, 0.95);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(229, 231, 235, 0.5);
-        }
-        
-        .dark .glass-nav {
-            background: rgba(31, 41, 55, 0.95);
             border: 1px solid rgba(55, 65, 81, 0.5);
         }
-        
-        .dark .glass-nav a:not(.btn-gradient),
-        .dark .glass-nav span:not(.gradient-text) {
+
+        .glass-nav a:not(.btn-gradient),
+        .glass-nav span:not(.gradient-text) {
             color: #e5e7eb;
         }
         
@@ -168,143 +157,82 @@
             to { opacity: 0; visibility: hidden; }
         }
         
-        /* Dark mode overrides */
-        .dark .bg-white {
+        .bg-white {
             background-color: #1f2937 !important;
         }
-        
-        .dark .bg-gray-50 {
+
+        .bg-gray-50 {
             background-color: #111827 !important;
         }
-        
-        .dark .bg-gray-100 {
+
+        .bg-gray-100 {
             background-color: #374151 !important;
         }
         
-        .dark .text-gray-700,
-        .dark .text-gray-800,
-        .dark .text-gray-900 {
+        .text-gray-700,
+        .text-gray-800,
+        .text-gray-900 {
             color: #e5e7eb !important;
         }
-        
-        .dark .text-gray-500,
-        .dark .text-gray-600 {
+
+        .text-gray-500,
+        .text-gray-600 {
             color: #9ca3af !important;
         }
-        
-        .dark .text-gray-400 {
+
+        .text-gray-400 {
             color: #6b7280 !important;
         }
-        
-        .dark .border-gray-100,
-        .dark .border-gray-200,
-        .dark .border-gray-300 {
+
+        .border-gray-100,
+        .border-gray-200,
+        .border-gray-300 {
             border-color: #374151 !important;
         }
-        
-        .dark input,
-        .dark select,
-        .dark textarea {
+
+        input,
+        select,
+        textarea {
             background-color: #374151 !important;
             border-color: #4b5563 !important;
             color: #e5e7eb !important;
         }
-        
-        .dark input::placeholder {
+
+        input::placeholder {
             color: #9ca3af !important;
         }
-        
-        .dark .bg-green-50 {
+
+        .bg-green-50 {
             background-color: rgba(16, 185, 129, 0.15) !important;
         }
-        
-        .dark .bg-purple-50 {
+
+        .bg-purple-50 {
             background-color: rgba(139, 92, 246, 0.15) !important;
         }
-        
-        .dark .bg-blue-50 {
+
+        .bg-blue-50 {
             background-color: rgba(59, 130, 246, 0.15) !important;
         }
-        
-        .dark .bg-red-50 {
+
+        .bg-red-50 {
             background-color: rgba(239, 68, 68, 0.15) !important;
         }
-        
-        .dark .bg-purple-100 {
+
+        .bg-purple-100 {
             background-color: rgba(139, 92, 246, 0.2) !important;
         }
-        
-        .dark .bg-green-100 {
+
+        .bg-green-100 {
             background-color: rgba(16, 185, 129, 0.2) !important;
         }
-        
-        .dark .bg-red-100 {
+
+        .bg-red-100 {
             background-color: rgba(239, 68, 68, 0.2) !important;
         }
         
-        /* Theme toggle button */
-        .theme-toggle {
-            position: relative;
-            width: 50px;
-            height: 26px;
-            background: #e5e7eb;
-            border-radius: 13px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .dark .theme-toggle {
-            background: #4b5563;
-        }
-        
-        .theme-toggle::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            transition: transform 0.3s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .dark .theme-toggle::after {
-            transform: translateX(24px);
-            background: #1f2937;
-        }
-        
-        .theme-toggle i {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 12px;
-            transition: opacity 0.3s;
-        }
-        
-        .theme-toggle .fa-sun {
-            left: 6px;
-            color: #f59e0b;
-            opacity: 1;
-        }
-        
-        .theme-toggle .fa-moon {
-            right: 6px;
-            color: #6366f1;
-            opacity: 0.5;
-        }
-        
-        .dark .theme-toggle .fa-sun {
-            opacity: 0.5;
-        }
-        
-        .dark .theme-toggle .fa-moon {
-            opacity: 1;
-        }
     </style>
 </head>
-<body class="min-h-screen bg-gray-50">
+<body class="min-h-screen bg-gray-50 dark">
     <!-- Floating Navigation -->
     <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 glass-nav rounded-full px-8 py-4 shadow-lg w-11/12 max-w-6xl">
         <div class="flex items-center justify-between">
@@ -333,12 +261,6 @@
             </div>
             
             <div class="flex items-center space-x-4">
-                <!-- Theme Toggle -->
-                <div class="theme-toggle" onclick="toggleTheme()" title="Переключить тему">
-                    <i class="fas fa-sun"></i>
-                    <i class="fas fa-moon"></i>
-                </div>
-                
                 {% if session.get('user_id') %}
                     <div class="flex items-center space-x-3">
                         <a href="{{ url_for('profile') }}" class="flex items-center space-x-2 hover:opacity-80 transition-opacity" title="Личный кабинет">
@@ -439,27 +361,8 @@
     </footer>
 
     <script>
-        // Theme management
-        function toggleTheme() {
-            const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-        
-        // Check saved theme on load - default to light
-        (function() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-        })();
+        // Force dark theme
+        document.documentElement.classList.add('dark');
     </script>
 
     {% block scripts %}{% endblock %}

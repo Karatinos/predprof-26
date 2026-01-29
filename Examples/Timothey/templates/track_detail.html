@@ -212,44 +212,26 @@
     <div class="max-w-7xl mx-auto px-4">
         <h2 class="text-3xl font-bold mb-8 text-gray-800 dark:text-white">Похожие маршруты</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg card-hover">
-                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&q=80" 
-                     alt="Эверест" class="w-full h-40 object-cover">
-                <div class="p-5">
-                    <h3 class="font-bold text-gray-800 dark:text-white mb-2">Базовый лагерь Эвереста</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-3">Непал • 16 дней</p>
-                    <div class="flex justify-between items-center">
-                        <span class="font-bold gradient-text">4800 ₽</span>
-                        <a href="{{ url_for('catalog') }}" class="text-purple-600 text-sm font-medium">Подробнее →</a>
+            {% if related_tracks %}
+                {% for related_track in related_tracks %}
+                <a href="{{ url_for('track_detail', track_id=related_track.id) }}">
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg card-hover">
+                        <img src="{{ related_track.image }}"
+                             alt="{{ related_track.name }}" class="w-full h-40 object-cover">
+                        <div class="p-5">
+                            <h3 class="font-bold text-gray-800 dark:text-white mb-2">{{ related_track.name }}</h3>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mb-3">{{ related_track.country }} • {{ related_track.duration }}</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold gradient-text">{{ related_track.price }} ₽</span>
+                                <button class="text-purple-600 text-sm font-medium pointer-events-none">Подробнее →</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg card-hover">
-                <img src="https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?w=400&q=80" 
-                     alt="Доломиты" class="w-full h-40 object-cover">
-                <div class="p-5">
-                    <h3 class="font-bold text-gray-800 dark:text-white mb-2">Доломитовые Альпы</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-3">Италия • 9 дней</p>
-                    <div class="flex justify-between items-center">
-                        <span class="font-bold gradient-text">3500 ₽</span>
-                        <a href="{{ url_for('catalog') }}" class="text-purple-600 text-sm font-medium">Подробнее →</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg card-hover">
-                <img src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?w=400&q=80" 
-                     alt="Исландия" class="w-full h-40 object-cover">
-                <div class="p-5">
-                    <h3 class="font-bold text-gray-800 dark:text-white mb-2">Кольцо Исландии</h3>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mb-3">Исландия • 14 дней</p>
-                    <div class="flex justify-between items-center">
-                        <span class="font-bold gradient-text">5200 ₽</span>
-                        <a href="{{ url_for('catalog') }}" class="text-purple-600 text-sm font-medium">Подробнее →</a>
-                    </div>
-                </div>
-            </div>
+                </a>
+                {% endfor %}
+            {% else %}
+                <p class="text-gray-500 dark:text-gray-400 col-span-3 text-center py-8">Нет похожих маршрутов</p>
+            {% endif %}
         </div>
     </div>
 </section>
